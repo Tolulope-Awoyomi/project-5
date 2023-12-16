@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
 
   resources :users, only: [:create, :show] 
+  resources :items
+  resources :item_categories
 end

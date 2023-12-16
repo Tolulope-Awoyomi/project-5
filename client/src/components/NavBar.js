@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { StyledNav, StyledNavLink } from '../styles/StyledComponents'; 
 
 const Navbar = () => {
     return (
-        <nav>
-            <NavLink to="/items-menu">Items Menu</NavLink>
-            <NavLink to="/food-business">Food Business</NavLink>
-        </nav>
+        <StyledNav>
+            <StyledNavLink to="/items-menu">Items Menu</StyledNavLink>
+            <StyledNavLink to="/food-business">Food Business</StyledNavLink>
+        </StyledNav>
     );
 };
 

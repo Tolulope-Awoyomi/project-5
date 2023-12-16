@@ -5,6 +5,7 @@ import {
   Card,
   Header,
   LinkContainer,
+  List,
   ListItem
 } from '../styles/StyledComponents'; 
 

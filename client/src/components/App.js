@@ -5,11 +5,12 @@ import { UserContext } from "./context/user";
 import Signup from './Signup';
 import Welcome from './Welcome';
 import BeforeLogin from './BeforeLogin';
+import Login from './Login';
 
 function App() {
   const { user } = useContext(UserContext);
 
-  if (!user) return <LoginForm />
+  if (!user) return <Login />
 
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/beforelogin" element={<BeforeLogin />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from "./context/user";
 import { useNavigate, Link } from "react-router-dom";
-import Login from './Login';
 import {
   Container,
   Card,
@@ -21,7 +20,7 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [phone_number, setPhone_number] = useState("");
     const [address, setAddress] = useState("");
-    const [fda_registration, setFda_registration] = useState("");
+    const [fda_registration_number, setFda_registration_number] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [errorsList, setErrorsList] = useState([]);
@@ -39,12 +38,12 @@ function Signup() {
           body: JSON.stringify({
             business_name: business_name,
             email: email,
-            password: password,
-            password_confirmation: passwordConfirmation,
             phone_number: phone_number,
             address: address,
-            category: category
-          }),
+            password: password,
+            fda_registration_number: fda_registration_number,
+            password_confirmation: passwordConfirmation
+            }),
         })
         .then(res => res.json())
         .then(user => {
@@ -80,7 +79,7 @@ function Signup() {
                         <FormGroup>
                             <label htmlFor="email">Email</label> 
                             <FormControl
-                                type="text"
+                                type="email"
                                 id="email"
                                 placeholder="Enter your business email..."
                                 value={email}
@@ -111,13 +110,13 @@ function Signup() {
                         </FormGroup>
 
                         <FormGroup>
-                            <label htmlFor="fda_registration">FDA Registration</label> 
+                            <label htmlFor="fda_registration_number">FDA Registration Number</label> 
                             <FormControl
                                 type="text"
-                                id="fda_registration"
+                                id="fda_registration_number"
                                 placeholder="Enter your business FDA Registration..."
-                                value={fda_registration}
-                                onChange={(e) => setFda_registration(e.target.value)}
+                                value={fda_registration_number}
+                                onChange={(e) => setFda_registration_number(e.target.value)}
                             />
                         </FormGroup>
 

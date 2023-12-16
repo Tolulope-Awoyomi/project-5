@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
 import App from '../src/components/App';
-import { BrowserRouter as Router } from "react-router-dom";
+import { UserProvider } from "./components/context/user";
 
 ReactDOM.render(
-    <App />,
+  <Router>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </Router>,
   document.getElementById('root')
 );
 

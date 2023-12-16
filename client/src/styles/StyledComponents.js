@@ -2,16 +2,22 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const Container = styled.div`
-  text-align: center;
+  text-align: center; /* Centers text */
+  width: 100%; /* Takes full width */
   padding: 20px;
+  box-sizing: border-box; /* Makes sure padding doesn't affect the overall width */
 `;
 
 const Card = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  background-color: #fffaf0; 
+  background-color: #fffaf0; /* Creamy background color */
   padding: 20px;
-  margin-bottom: 16px;
+  max-width: 600px; /* Maximum width it can grow to */
+  width: auto; /* Adjusts width according to content */
+  margin-left: auto; /* Centers the card on the page */
+  margin-right: auto; /* Centers the card on the page */
+  display: block; /* Use block to fill the available width up to max-width */
 `;
 
 const CentreHeader = styled.div`
@@ -78,7 +84,6 @@ const SubmitButton = styled.button`
     background-color: #933e33;
   }
 `;
-
 
 const LinkContainer = styled.div`
   margin-bottom: 16px;

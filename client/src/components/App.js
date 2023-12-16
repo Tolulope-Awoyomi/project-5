@@ -7,6 +7,8 @@ import NavBar from "./NavBar";
 import FoodBusiness from "./FoodBusiness";
 import ItemsMenu from "../pages/ItemsMenu";
 import Welcome from "./Welcome";
+import Inventory from "../pages/Inventory";
+import AddItem from "../pages/AddItem";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/food-business" element={<FoodBusiness />} />
           <Route path="/items-menu" element={<ItemsMenu />} />
           <Route path="/welcome" element={<Welcome />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/additem" element={<AddItem />} />
         </Routes>
       </div>
     </>

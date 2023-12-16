@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
 
-    validates :business_name, :email, :phone_number, :address, :fda_registration_number, :closing_time, :password, :password_confirmation, presence: true
+    validates :business_name, :email, :phone_number, :address, :fda_registration_number, :password, :password_confirmation, presence: true
     validates :business_name, :email, :fda_registration_number, uniqueness: true
     validates :password, confirmation: true
     validate :password_complexity

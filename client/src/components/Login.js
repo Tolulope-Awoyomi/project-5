@@ -41,8 +41,6 @@ function Login() {
             login(user);
             navigate("/welcome");
           } else {
-            setEmail("");
-            setPassword("");
             setErrorsList(user.errors);
           }
         });

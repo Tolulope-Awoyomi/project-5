@@ -189,6 +189,67 @@ const FlexContainer = styled.div`
 `;
 
 
+const FormLabel = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+`;
+
+const FormInput = styled.input`
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+`;
+
+const FormSelect = styled.select`
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+`;
+
+const FormError = styled.p`
+  color: #721c24;
+  margin: 5px 0;
+`;
+
+const PageHeader = styled.div`
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+`;
+
+const BreadcrumbContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
+const BreadcrumbLink = styled(NavLink)`
+  color: #007bff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const Section = styled.section`
+  padding: 20px 0;
+`;
+
+const FormCard = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const ButtonContainer = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
+
 export {
   Container,
   Card,
@@ -213,5 +274,15 @@ export {
   Title,
   Description,
   FlexContainer,
-  CentreHeader
+  CentreHeader,
+  FormLabel,
+  FormInput,
+  FormSelect,
+  FormError,
+  PageHeader,
+  BreadcrumbContainer,
+  BreadcrumbLink,
+  Section,
+  FormCard,
+  ButtonContainer
 };

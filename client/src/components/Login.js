@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   Container,
   Card,
-  Header,
+  CentreHeader,
   FormContainer,
   FormGroup,
   FormControl,
@@ -49,7 +49,7 @@ function Login() {
     return (
         <Container>
             <Card>
-                <Header><h4>Login Page</h4></Header>
+                <CentreHeader><h4>Login Page</h4></CentreHeader>
                 <FormContainer>
                     <form onSubmit={handleSubmit}>
                         <FormGroup>

@@ -14,9 +14,35 @@ const Card = styled.div`
   margin-bottom: 16px;
 `;
 
-const Header = styled.div`
+const CentreHeader = styled.div`
   margin-bottom: 16px;
   text-align: center;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px;
+  background-color: #fffaf0; 
+`;
+
+const WelcomeMessage = styled.h2`
+  flex-grow: 1;
+  color: #333;
+  text-align: left; 
+`;
+
+const LogoutButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #c44536;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #933e33;
+  }
 `;
 
 const FormContainer = styled.div`
@@ -37,19 +63,22 @@ const FormControl = styled.input`
 `;
 
 const SubmitButton = styled.button`
-  width: 100%;
-  padding: 10px;
+  padding: 10px 20px; 
   border-radius: 4px;
-  background-color: #c44536; 
+  background-color: #c44536;
   color: white;
   border: none;
   cursor: pointer;
   margin-bottom: 16px;
+  display: block; 
+  margin-left: auto;
+  margin-right: auto; 
 
   &:hover {
     background-color: #933e33;
   }
 `;
+
 
 const LinkContainer = styled.div`
   margin-bottom: 16px;
@@ -98,7 +127,6 @@ const StyledNavLink = styled(NavLink)`
   &.active {
     background-color: #933e33;
   }
-
 `;
 
 const LinksContainer = styled.div`
@@ -118,23 +146,43 @@ const DescriptionText = styled.p`
   margin-bottom: 40px;
 `;
 
-const WelcomeMessage = styled.h2`
-  color: #333;
+const IconBoxItem = styled.div`
+  width: calc(50% - 10px); 
   text-align: center;
-  margin-bottom: 20px;
-`;
+  padding: 1.25rem;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  transition: all 0.3s;
 
-const LogoutButton = styled.button`
-  padding: 10px 20px;
-  border-radius: 4px;
-  background-color: #c44536; 
-  color: white;
-  border: none;
-  cursor: pointer;
   &:hover {
-    background-color: #933e33; 
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 `;
+
+const Icon = styled.div`
+  font-size: 2rem; 
+  margin-bottom: 0.75rem;
+`;
+
+const Title = styled.h3`
+  margin-bottom: 0.75rem;
+`;
+
+const Description = styled.p`
+  margin-bottom: 1rem;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start; 
+  flex-wrap: wrap; 
+  gap: 20px; 
+  margin: 20px 0;
+`;
+
 
 export {
   Container,
@@ -154,5 +202,11 @@ export {
   WelcomeText,
   DescriptionText,
   WelcomeMessage,
-  LogoutButton
+  LogoutButton,
+  IconBoxItem,
+  Icon,
+  Title,
+  Description,
+  FlexContainer,
+  CentreHeader
 };

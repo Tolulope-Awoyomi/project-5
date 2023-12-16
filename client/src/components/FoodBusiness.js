@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Card, WelcomeText, DescriptionText, LinksContainer, StyledNavLink } from '../styles/StyledComponents'; 
 
 const FoodBusiness = () => {

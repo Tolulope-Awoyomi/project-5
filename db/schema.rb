@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2023_12_17_051101) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
-    t.text "addtional_info"
+    t.text "addtional_info" 
     t.datetime "available_until"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

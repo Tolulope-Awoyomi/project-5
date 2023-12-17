@@ -6,12 +6,10 @@ const CategoryDropdown = ({ value, onChange }) => {
   const { categories } = useContext(ItemsContext);
 
   return (
-    <FormSelect value={value} onChange={onChange}>
+    <FormSelect id="itemCategory" name="item_category_id" value={value} onChange={onChange}>
       <option value="">Select Category</option>
-      {categories.map((category) => (
-        <option key={category.id} value={category.id}>
-          {category.category}
-        </option>
+      {categories.map(category => (
+        <option key={category.id} value={category.id}>{category.category}</option>
       ))}
     </FormSelect>
   );

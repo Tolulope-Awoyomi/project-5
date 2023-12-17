@@ -20,13 +20,13 @@ function AddItem() {
   const [newItem, setNewItem] = useState({
     name: '',
     quantity: '',
-    additional_info: '',
+    addtional_info: '',
     available_until: '',
     expiration_date: '',
     allergens: '',
     dietary_classification: '',
     nutrition_facts: '',
-    category: ''
+    item_category_id: ''
   });
   const [errors, setErrors] = useState([]);
   
@@ -67,7 +67,7 @@ function AddItem() {
       errors.push('Nutrition facts are required.');
     }
 
-    if (!newItem.category) {
+    if (!newItem.item_category_id) {
       errors.push('Category is required.');
     }
   
@@ -76,18 +76,35 @@ function AddItem() {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewItem({ ...newItem, [name]: name === 'category' ? parseInt(value, 10) : value });
-  };
+    if (name === 'item_category_id') {
+      setNewItem({ ...newItem, [name]: value ? parseInt(value, 10) : '' });
+    } else {
+      setNewItem({ ...newItem, [name]: value });
+    }
+  };  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = validateForm();
     if (formErrors.length > 0) {
       setErrors(formErrors);
-    } else {
-      addItem(newItem);
-      navigate('/inventory');
+      return;
     }
+  
+    const itemData = {
+      name: newItem.name,
+      quantity: newItem.quantity,
+      addtional_info: newItem.addtional_info,
+      available_until: newItem.available_until,
+      expiration_date: newItem.expiration_date,
+      allergens: newItem.allergens,
+      dietary_classification: newItem.dietary_classification,
+      nutrition_facts: newItem.nutrition_facts,
+      item_category_id: newItem.item_category_id
+    };
+  console.log(itemData)
+    addItem(itemData);
+    navigate('/inventory');
   };
   
   return (
@@ -178,16 +195,16 @@ function AddItem() {
 
                   <FormGroup>
                     <FormLabel htmlFor="itemCategory">Category</FormLabel>
-                    <CategoryDropdown value={newItem.category} onChange={handleChange} />
+                    <CategoryDropdown value={newItem.item_category_id} onChange={handleChange} />
                   </FormGroup>
 
                   <FormGroup>
-                    <FormLabel htmlFor="additional_info">Additional Information</FormLabel>
+                    <FormLabel htmlFor="addtional_info">Additional Information</FormLabel>
                     <FormInput
                       type="text"
-                      id="additional_info"
-                      name="additional_info"
-                      value={newItem.additional_info}
+                      id="addtional_info"
+                      name="addtional_info"
+                      value={newItem.addtional_info}
                       onChange={handleChange}
                     />
                   </FormGroup>

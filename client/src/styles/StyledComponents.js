@@ -193,20 +193,30 @@ const FormLabel = styled.label`
   display: block;
   margin-bottom: 5px;
   color: #333;
+  text-align: center;
 `;
 
 const FormInput = styled.input`
-  width: 100%;
+  width: 50%;
   padding: 8px;
   border: 1px solid #ced4da;
   border-radius: 4px;
+  text-align: center;
 `;
 
 const FormSelect = styled.select`
-  width: 100%;
   padding: 8px;
-  border: 1px solid #ced4da;
+  width: 54%;
   border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  text-align: center;
+ 
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
 `;
 
 const FormError = styled.p`

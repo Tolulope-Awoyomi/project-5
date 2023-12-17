@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
+import { FormSelect } from '../styles/StyledComponents';
 
-const CategoryDropdown = () => {
+const CategoryDropdown = ({ value, onChange }) => {
   const { categories } = useContext(ItemsContext);
 
   return (
-    <select>
-      {categories.map(category => (
-        <option key={category.id} value={category.name}>
-          {category.name}
+    <FormSelect value={value} onChange={onChange}>
+      <option value="">Select Category</option>
+      {categories.map((category) => (
+        <option key={category.id} value={category.id}>
+          {category.category}
         </option>
       ))}
-    </select>
+    </FormSelect>
   );
 };
 

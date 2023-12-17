@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../components/context/items';
+import CategoryDropdown from './CategoryDropDown'; 
 import { 
   FormContainer, 
   FormGroup, 
   FormLabel, 
   FormInput, 
-  FormSelect, 
   SubmitButton, 
   ErrorAlert, 
   Container,
@@ -15,7 +15,7 @@ import {
 } from '../styles/StyledComponents'; 
 
 function AddItem() {
-  const { addItem, categories } = useContext(ItemsContext);
+  const { addItem } = useContext(ItemsContext);
   const navigate = useNavigate();
   const [newItem, setNewItem] = useState({
     name: '',
@@ -41,10 +41,6 @@ function AddItem() {
       errors.push('Quantity is required.');
     } else if (isNaN(newItem.quantity) || newItem.quantity <= 0) {
       errors.push('Quantity must be a positive number.');
-    }
-  
-    if (!newItem.additional_info) {
-      errors.push('Additional information is required.');
     }
   
     if (!newItem.available_until) {
@@ -78,9 +74,9 @@ function AddItem() {
     return errors;
   };
   
-
   const handleChange = (e) => {
-    setNewItem({ ...newItem, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewItem({ ...newItem, [name]: name === 'category' ? parseInt(value, 10) : value });
   };
 
   const handleSubmit = (e) => {
@@ -102,22 +98,6 @@ function AddItem() {
           
             <FormContainer>
                 <form onSubmit={handleSubmit}>
-
-                <FormGroup>
-                  <FormLabel htmlFor="itemCategory">Category</FormLabel>
-                  <FormSelect
-                    id="itemCategory"
-                    name="category"
-                    value={newItem.category}
-                    onChange={handleChange}>
-                    <option value="">Select Category</option>
-                    {categories.map(category => (
-                      <option key={category.id} value={category.name}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </FormSelect>
-                </FormGroup>
           
                   <FormGroup>
                     <FormLabel htmlFor="itemName">Item Name</FormLabel>
@@ -137,17 +117,6 @@ function AddItem() {
                       id="itemQuantity"
                       name="quantity"
                       value={newItem.quantity}
-                      onChange={handleChange}
-                    />
-                  </FormGroup>
-
-                  <FormGroup>
-                    <FormLabel htmlFor="additional_info">Additional Information</FormLabel>
-                    <FormInput
-                      type="text"
-                      id="additional_info"
-                      name="additional_info"
-                      value={newItem.additional_info}
                       onChange={handleChange}
                     />
                   </FormGroup>
@@ -197,16 +166,30 @@ function AddItem() {
                   </FormGroup>
 
                   <FormGroup>
+                    <FormLabel htmlFor="available_until">Available Until</FormLabel>
+                    <FormInput
+                      type="datetime-local" 
+                      id="available_until" 
+                      name="available_until" 
+                      value={newItem.available_until} 
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
                     <FormLabel htmlFor="itemCategory">Category</FormLabel>
-                    <FormSelect
-                      id="itemCategory"
-                      name="category"
-                      value={newItem.category}
-                      onChange={handleChange}>
-                        {categories.map((category) => (
-                          <option key={category.id} value={category.name}>{category.name}</option>
-                        ))}
-                    </FormSelect>
+                    <CategoryDropdown value={newItem.category} onChange={handleChange} />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormLabel htmlFor="additional_info">Additional Information</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="additional_info"
+                      name="additional_info"
+                      value={newItem.additional_info}
+                      onChange={handleChange}
+                    />
                   </FormGroup>
 
                   {errors.length > 0 && (

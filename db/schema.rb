@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_16_211937) do
+ActiveRecord::Schema.define(version: 2023_12_17_051101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,9 @@ ActiveRecord::Schema.define(version: 2023_12_16_211937) do
     t.string "allergens"
     t.string "dietary_classification"
     t.text "nutrition_facts"
+    t.bigint "user_id", null: false
     t.index ["item_category_id"], name: "index_items_on_item_category_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,4 +50,5 @@ ActiveRecord::Schema.define(version: 2023_12_16_211937) do
   end
 
   add_foreign_key "items", "item_categories"
+  add_foreign_key "items", "users"
 end

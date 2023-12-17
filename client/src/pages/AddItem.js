@@ -9,11 +9,9 @@ import {
   FormSelect, 
   SubmitButton, 
   ErrorAlert, 
-  PageHeader, 
-  BreadcrumbContainer,
-  BreadcrumbLink,
-  Section,
-  FormCard
+  Container,
+  Card, 
+  CentreHeader
 } from '../styles/StyledComponents'; 
 
 function AddItem() {
@@ -28,20 +26,61 @@ function AddItem() {
     allergens: '',
     dietary_classification: '',
     nutrition_facts: '',
-    category: 'meals'
+    category: ''
   });
   const [errors, setErrors] = useState([]);
   
   const validateForm = () => {
     const errors = [];
-    // Add validation logic here
-    // Example: if (!newItem.name) errors.push('Item name is required.');
+  
+    if (!newItem.name) {
+      errors.push('Item name is required.');
+    }
+  
+    if (!newItem.quantity) {
+      errors.push('Quantity is required.');
+    } else if (isNaN(newItem.quantity) || newItem.quantity <= 0) {
+      errors.push('Quantity must be a positive number.');
+    }
+  
+    if (!newItem.additional_info) {
+      errors.push('Additional information is required.');
+    }
+  
+    if (!newItem.available_until) {
+      errors.push('Available until date is required.');
+    } else if (new Date(newItem.available_until) < new Date()) {
+      errors.push('Available until date cannot be in the past.');
+    }
+  
+    if (!newItem.expiration_date) {
+      errors.push('Expiration date is required.');
+    } else if (new Date(newItem.expiration_date) < new Date()) {
+      errors.push('Expiration date cannot be in the past.');
+    }
+
+    if (!newItem.allergens) {
+      errors.push('Allergens information is required.');
+    }
+  
+    if (!newItem.dietary_classification) {
+      errors.push('Dietary classification is required.');
+    }
+  
+    if (!newItem.nutrition_facts) {
+      errors.push('Nutrition facts are required.');
+    }
+
+    if (!newItem.category) {
+      errors.push('Category is required.');
+    }
+  
     return errors;
   };
+  
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewItem({ ...newItem, [name]: value });
+    setNewItem({ ...newItem, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -57,153 +96,133 @@ function AddItem() {
   
   return (
     <>
-      <PageHeader>
-        <div className="container">
-          <h2>Add Items</h2>
-          <BreadcrumbContainer>
-            <BreadcrumbLink to="/foodbusiness">Food Business Services</BreadcrumbLink>
-            <span> / </span>
-            <BreadcrumbLink to="#">Register Items</BreadcrumbLink>
-          </BreadcrumbContainer>
-        </div>
-      </PageHeader>
+      <Container>
+          <Card>
+            <CentreHeader> <h4>Add Item</h4> </CentreHeader>
+          
+            <FormContainer>
+                <form onSubmit={handleSubmit}>
 
-      <Section>
-        <FormContainer>
-          <FormCard>
-            <form onSubmit={handleSubmit}>
-
-            {/* Category Select */}
-            <FormGroup>
-                <FormLabel htmlFor="itemCategory">Category</FormLabel>
-                <FormSelect
-                  id="itemCategory"
-                  name="category"
-                  value={newItem.category}
-                  onChange={handleChange}>
-                  {categories.map(category => (
-                    <option key={category.id} value={category.name}>
-                      {category.name}
-                    </option>
-                  ))}
-                </FormSelect>
-              </FormGroup>
-      
-              {/* Name Input */}
-              <FormGroup>
-                <FormLabel htmlFor="itemName">Item Name</FormLabel>
-                <FormInput
-                  type="text"
-                  id="itemName"
-                  name="name"
-                  value={newItem.name}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              {/* Quantity Input */}
-              <FormGroup>
-                <FormLabel htmlFor="itemQuantity">Quantity</FormLabel>
-                <FormInput
-                  type="number"
-                  id="itemQuantity"
-                  name="quantity"
-                  value={newItem.quantity}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <FormLabel htmlFor="additional_info">Additional Information</FormLabel>
-                <FormInput
-                  type="text"
-                  id="additional_info"
-                  name="additional_info"
-                  value={newItem.additional_info}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              {/* Expiration Date Input */}
-              <FormGroup>
-                <FormLabel htmlFor="expiration_date">Expiration Date</FormLabel>
-                <FormInput
-                  type="date"
-                  id="expiration_date"
-                  name="expiration_date"
-                  value={newItem.expiration_date}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              {/* Allergens Input */}
-              <FormGroup>
-                <FormLabel htmlFor="allergens">Allergens</FormLabel>
-                <FormInput
-                  type="text"
-                  id="allergens"
-                  name="allergens"
-                  value={newItem.allergens}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              {/* Dietary Classification Input */}
-              <FormGroup>
-                <FormLabel htmlFor="dietary_classification">Dietary Classification</FormLabel>
-                <FormInput
-                  type="text"
-                  id="dietary_classification"
-                  name="dietary_classification"
-                  value={newItem.dietary_classification}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              {/* Nutrition Facts Input */}
-              <FormGroup>
-                <FormLabel htmlFor="nutrition_facts">Nutrition Facts</FormLabel>
-                <FormInput
-                  type="text"
-                  id="nutrition_facts"
-                  name="nutrition_facts"
-                  value={newItem.nutrition_facts}
-                  onChange={handleChange}
-                />
-              </FormGroup>
-
-              {/* Category Select */}
-              <FormGroup>
-                <FormLabel htmlFor="itemCategory">Category</FormLabel>
-                <FormSelect
-                  id="itemCategory"
-                  name="category"
-                  value={newItem.category}
-                  onChange={handleChange}>
-                    {categories.map((category) => (
-                      <option key={category.id} value={category.name}>{category.name}</option>
+                <FormGroup>
+                  <FormLabel htmlFor="itemCategory">Category</FormLabel>
+                  <FormSelect
+                    id="itemCategory"
+                    name="category"
+                    value={newItem.category}
+                    onChange={handleChange}>
+                    <option value="">Select Category</option>
+                    {categories.map(category => (
+                      <option key={category.id} value={category.name}>
+                        {category.name}
+                      </option>
                     ))}
-                </FormSelect>
+                  </FormSelect>
+                </FormGroup>
+          
+                  <FormGroup>
+                    <FormLabel htmlFor="itemName">Item Name</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="itemName"
+                      name="name"
+                      value={newItem.name}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
 
-              </FormGroup>
+                  <FormGroup>
+                    <FormLabel htmlFor="itemQuantity">Quantity</FormLabel>
+                    <FormInput
+                      type="number"
+                      id="itemQuantity"
+                      name="quantity"
+                      value={newItem.quantity}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
 
+                  <FormGroup>
+                    <FormLabel htmlFor="additional_info">Additional Information</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="additional_info"
+                      name="additional_info"
+                      value={newItem.additional_info}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
 
-              {/* Error Messages */}
-              {errors.length > 0 && (
-                <ErrorAlert>
-                  {errors.map((error, index) => (
-                    <p key={index}>{error}</p>
-                  ))}
-                </ErrorAlert>
-              )}
+                  <FormGroup>
+                    <FormLabel htmlFor="expiration_date">Expiration Date</FormLabel>
+                    <FormInput
+                      type="date"
+                      id="expiration_date"
+                      name="expiration_date"
+                      value={newItem.expiration_date}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
 
-              {/* Submit Button */}
-              <SubmitButton type="submit">Add Item</SubmitButton>
-            </form>
-          </FormCard>
-        </FormContainer>
-      </Section>
-    </>
+                  <FormGroup>
+                    <FormLabel htmlFor="allergens">Allergens</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="allergens"
+                      name="allergens"
+                      value={newItem.allergens}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormLabel htmlFor="dietary_classification">Dietary Classification</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="dietary_classification"
+                      name="dietary_classification"
+                      value={newItem.dietary_classification}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormLabel htmlFor="nutrition_facts">Nutrition Facts</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="nutrition_facts"
+                      name="nutrition_facts"
+                      value={newItem.nutrition_facts}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormLabel htmlFor="itemCategory">Category</FormLabel>
+                    <FormSelect
+                      id="itemCategory"
+                      name="category"
+                      value={newItem.category}
+                      onChange={handleChange}>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.name}>{category.name}</option>
+                        ))}
+                    </FormSelect>
+                  </FormGroup>
+
+                  {errors.length > 0 && (
+                    <ErrorAlert>
+                      {errors.map((error, index) => (
+                        <p key={index}>{error}</p>
+                      ))}
+                    </ErrorAlert>
+                  )}
+
+                  <SubmitButton type="submit">Add Item</SubmitButton>
+                </form>
+            </FormContainer>
+          </Card>
+          </Container>
+      </>
   );
 }
 

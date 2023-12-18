@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../components/context/user';
 import { useNavigate } from 'react-router-dom';
-import { FormContainer, FormGroup, FormLabel, FormInput, SubmitButton, ErrorAlert, Container, Card, CentreHeader, BreadcrumbContainer, BreadcrumbSeparator, BreadcrumbLink, Header, WelcomeMessage } from '../styles/StyledComponents';
+import { FormContainer, FormGroup, FormLabel, FormInput, SubmitButton, ErrorAlert, Container, Card, CentreHeader, BreadcrumbContainer, BreadcrumbSeparator, BreadcrumbLink, Header, WelcomeMessage, EditButton, DeleteButton } from '../styles/StyledComponents';
 
 function EditProfile() {
     const { user, updateUser } = useContext(UserContext);
@@ -29,10 +29,13 @@ function EditProfile() {
         }
     };
 
+    const handleCancel = () => {
+        navigate('/manage-account'); 
+      };
+
     return (
         <Container> 
             <Card> 
-            {/* <Header> */}
                 <BreadcrumbContainer>
                     <BreadcrumbLink to="/food-business">Services</BreadcrumbLink>
                     <BreadcrumbSeparator>/</BreadcrumbSeparator>
@@ -40,7 +43,7 @@ function EditProfile() {
                     <BreadcrumbSeparator>/</BreadcrumbSeparator>
                     <BreadcrumbLink to="/edit-profile">Edit Profile</BreadcrumbLink>
                 </BreadcrumbContainer>
-            {/* </Header> */}
+
                 <FormContainer>
                     <CentreHeader> <h4>Edit Profile</h4> </CentreHeader>
                     <form onSubmit={handleSubmit}>
@@ -99,7 +102,8 @@ function EditProfile() {
                             />
                         </FormGroup>
 
-                        <SubmitButton type="submit">Update Profile</SubmitButton>
+                        <EditButton type="submit">Update Profile</EditButton>
+                        <DeleteButton onClick={handleCancel}>Cancel</DeleteButton>
                     </form>
                     {error && <ErrorAlert>{error}</ErrorAlert>}
                 </FormContainer>

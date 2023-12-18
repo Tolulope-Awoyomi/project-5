@@ -93,7 +93,7 @@ function Inventory() {
               type="datetime-local"
               name="available_until"
               value={formatDateForInput(editItem.available_until)}
-              onChange={handleChange}
+              onChange={handleChange} 
             />
           </StyledFormContainer>
           <br />

@@ -376,7 +376,80 @@ const StyledFormSelect = styled(FormSelect)`
   }
   margin: 10px auto; 
   display: block; 
+`;  
+
+const CategoriesMenu = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 `;
+
+const CategoryButton = styled.button`
+  background: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const SearchInput = styled.input`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+`;
+
+const ItemsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+`;
+
+const ItemCard = styled.div`
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+`;
+
+const ItemName = styled.h4`
+  margin: 0;
+`;
+
+const ItemDetail = styled.p`
+  margin: 5px 0;
+  color: #666;
+`;
+
+const DetailButton = styled.button`
+  background: #0056b3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background: #004494;
+  }
+`;
+
 
 export {
   Container,
@@ -422,5 +495,14 @@ export {
   StyledFormContainer,
   StyledFormInput,
   StyledFormSelect,
-  CategoryDropDownFormSelect
+  CategoryDropDownFormSelect,
+  CategoriesMenu, 
+  CategoryButton, 
+  SearchContainer, 
+  SearchInput, 
+  ItemsList, 
+  ItemCard, 
+  ItemName, 
+  ItemDetail, 
+  DetailButton
 };

@@ -1,77 +1,106 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
+import { CategoriesMenu, CategoryButton, SearchContainer, SearchInput, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
 
 function ItemsMenu() {
-  const { items, fetchDonationItems } = useContext(ItemsContext);
+  const { items, categories } = useContext(ItemsContext);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchZip, setSearchZip] = useState('');
+  const [searchLocation, setSearchLocation] = useState('');
   const [searchBusinessName, setSearchBusinessName] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-
-  useEffect(() => {
-    fetchDonationItems();
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSearchZip = (e) => {
-    setSearchZip(e.target.value);
+  const handleSearchLocation = (e) => {
+    setSearchLocation(e.target.value);
   };
 
   const handleSearchBusinessName = (e) => {
     setSearchBusinessName(e.target.value);
   };
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+  const getCategoryNameById = (categoryId) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.category : 'Unknown';
   };
 
-  const filteredItems = items.filter(item => {
-    const matchesName = item.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesZip = item.user.zip.toLowerCase().includes(searchZip.toLowerCase());
-    const matchesBusinessName = item.user.business_name.toLowerCase().includes(searchBusinessName.toLowerCase());
-    const matchesCategory = selectedCategory === '' || item.category === selectedCategory;
+  const itemsWithCategoryNames = items.map(item => ({
+    ...item,
+    category: getCategoryNameById(item.item_category_id)
+  }));
 
-    return matchesName && matchesZip && matchesBusinessName && matchesCategory;
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(categoryId);
+  };
+  
+
+  const filteredItems = itemsWithCategoryNames.filter(item => {
+    const matchesName = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesAddress = item.user.address.toLowerCase().includes(searchLocation.toLowerCase());
+    const matchesBusinessName = item.user.business_name.toLowerCase().includes(searchBusinessName.toLowerCase());
+    
+    let matchesCategory = true;
+    if (selectedCategory !== 'All') {
+      matchesCategory = item.item_category_id === selectedCategory;
+    }
+
+    return matchesName && matchesAddress && matchesBusinessName && matchesCategory;
   });
+
+    useEffect(() => {
+      handleCategoryClick('All');
+    }, []); 
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
   const showItemDetails = (item) => {
     alert(`Item: ${item.name}\nBusiness Name: ${item.user.business_name}\nQuantity: ${item.quantity}`);
   };
 
-  // Extract unique categories from items
-  const categories = Array.from(new Set(items.map(item => item.category)));
-
   return (
     <div>
-      <div className="categories-menu">
+     <CategoriesMenu>
+        <CategoryButton onClick={() => handleCategoryClick('All')}>
+          All
+        </CategoryButton>
         {categories.map(category => (
-          <button key={category} onClick={() => handleCategoryClick(category)} className="btn btn-secondary">
-            {category}
-          </button>
+          <CategoryButton key={category.id} onClick={() => handleCategoryClick(category.id)}>
+            {category.category}
+          </CategoryButton>
         ))}
-      </div>
+      </CategoriesMenu>
+      
+      <SearchContainer>
+        <SearchInput type="text" placeholder="Search Item Name" value={searchTerm} onChange={handleSearch} />
+        <SearchInput type="text" placeholder="Search By Location" value={searchLocation} onChange={handleSearchLocation} />
+        <SearchInput type="text" placeholder="Search Business Name" value={searchBusinessName} onChange={handleSearchBusinessName} />
+      </SearchContainer>
 
-      <div className="search-container">
-        <input type="text" placeholder="Search Item Name" value={searchTerm} onChange={handleSearch} />
-        <input type="text" placeholder="Search Zip Code" value={searchZip} onChange={handleSearchZip} />
-        <input type="text" placeholder="Search Business Name" value={searchBusinessName} onChange={handleSearchBusinessName} />
-      </div>
-
-      <div className="items-list">
+      <ItemsList>
         {filteredItems.map(item => (
-          <div key={item.id} className="item-entry">
-            <div>{item.name}</div>
-            <div>{item.user.business_name}</div>
-            <div>{item.user.zip}</div>
-            <button onClick={() => showItemDetails(item)} className="btn btn-primary">
+          <ItemCard key={item.id}>
+            <ItemName>{item.name}</ItemName>
+            <ItemDetail>Quantity: {item.quantity}</ItemDetail>
+            <ItemDetail>Allergens: {item.allergens}</ItemDetail>
+            <ItemDetail>Dietary Classification: {item.dietary_classification}</ItemDetail>
+            <ItemDetail>Nutrition Facts: {item.nutrition_facts}</ItemDetail>
+            <ItemDetail>Additional Info: {item.additional_info}</ItemDetail>
+            <ItemDetail>Available Until: {formatDate(item.available_until)}</ItemDetail>
+            <DetailButton onClick={() => showItemDetails(item)}>
               Show Details
-            </button>
-          </div>
+            </DetailButton>
+          </ItemCard>
         ))}
-      </div>
+      </ItemsList>
     </div>
   );
 }

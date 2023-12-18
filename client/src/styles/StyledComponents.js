@@ -2,22 +2,22 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const Container = styled.div`
-  text-align: center; /* Centers text */
-  width: 100%; /* Takes full width */
+  text-align: center; 
+  width: 100%; 
   padding: 20px;
-  box-sizing: border-box; /* Makes sure padding doesn't affect the overall width */
+  box-sizing: border-box; 
 `;
 
 const Card = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  background-color: #fffaf0; /* Creamy background color */
+  background-color: #fffaf0; 
   padding: 20px;
-  max-width: 600px; /* Maximum width it can grow to */
-  width: auto; /* Adjusts width according to content */
-  margin-left: auto; /* Centers the card on the page */
-  margin-right: auto; /* Centers the card on the page */
-  display: block; /* Use block to fill the available width up to max-width */
+  max-width: 600px; 
+  width: auto; 
+  margin-left: auto; 
+  margin-right: auto; 
+  display: block; 
 `;
 
 const CentreHeader = styled.div`
@@ -206,7 +206,7 @@ const FormInput = styled.input`
 
 const FormSelect = styled.select`
   padding: 8px;
-  width: 54%;
+  width: 59%;
   border-radius: 4px;
   border: 1px solid #ccc;
   background-color: white;
@@ -259,6 +259,110 @@ const ButtonContainer = styled.div`
   margin-top: 20px;
 `;
 
+const PageContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fa;
+`;
+
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  text-align: centre;
+  background-color: #fff; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+  th, td {
+    padding: 12px; 
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #c44536; 
+    color: white;
+    font-size: 16px; 
+  }
+
+  tr:nth-child(even) {
+    background-color: #fffaf0; 
+  }
+
+  tr:hover {
+    background-color: #f5f5f5; 
+  }
+`;
+
+const StyledButton = styled.button`
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-weight: bold;
+`;
+
+const EditButton = styled(StyledButton)`
+  background-color: #4CAF50;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const DeleteButton = styled(StyledButton)`
+  background-color:  #F44336;
+  color: white;
+  // color: #F44336;;
+
+  &:hover {
+    background-color: #d32f2f;
+  }
+`;
+
+const SectionHeader = styled.h2`
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const StyledFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1px; 
+`;
+
+const StyledFormInput = styled(FormInput)`
+  border: 1px solid #ced4da;
+  padding: 12px 20px;
+  font-size: 16px; 
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+
+  width: 50%; 
+  max-width: 500px; 
+  margin: 10px auto; 
+  display: block; 
+`;
+
+const StyledFormSelect = styled(FormSelect)`
+  padding: 12px 20px;
+  width: 57%; 
+  font-size: 16px;
+  &:focus {
+    border-color: #80bdff;
+  }
+  margin: 10px auto; 
+  display: block; 
+`;
+
 export {
   Container,
   Card,
@@ -293,5 +397,14 @@ export {
   BreadcrumbLink,
   Section,
   FormCard,
-  ButtonContainer
+  ButtonContainer,
+  PageContainer, 
+  StyledTable, 
+  StyledButton, 
+  SectionHeader,
+  DeleteButton,
+  EditButton,
+  StyledFormContainer,
+  StyledFormInput,
+  StyledFormSelect
 };

@@ -1,11 +1,13 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :items
+    has_many :items, dependent: :destroy
     has_many :comments
 
-    validates :business_name, :email, :phone_number, :address, :fda_registration_number, :password, :password_confirmation, presence: true
+    validates :password, presence: true, confirmation: true, on: :create
+    validates :password, presence: true, if: :password_present?, on: :update
+
+    validates :business_name, :email, :phone_number, :address, :fda_registration_number, presence: true
     validates :business_name, :email, :fda_registration_number, uniqueness: true
-    validates :password, confirmation: true
     validate :password_complexity
     validate :email_format
     validate :phone_length
@@ -16,6 +18,10 @@ class User < ApplicationRecord
             errors.add :password, "must be at least 5 characters long and contain at least one letter and one number."
         end
     end
+
+    def password_present?
+        !password.blank?
+      end
 
     def email_format
         unless email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

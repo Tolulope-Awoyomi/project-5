@@ -623,6 +623,32 @@ const Comment = styled.div`
   }
 `;
 
+const ManageAccountButton = styled.button`
+  padding: 10px 20px;
+  margin-right: 8px; 
+  border-radius: 4px;
+  background-color: #f0ad4e; 
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #ec971f;
+  }
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
 
 export {
   Container,
@@ -690,5 +716,7 @@ export {
   StyledInput, 
   StyledTextArea,
   Comment,
-  CommentSection
+  CommentSection,
+  ManageAccountButton,
+  Button
 };

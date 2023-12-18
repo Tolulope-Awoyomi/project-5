@@ -8,17 +8,13 @@ function ItemDetail() {
   const { itemId } = useParams();
   const { items, fetchItemComments, comments } = useContext(ItemsContext);
 
-  useEffect(() => {
-    fetchItemComments(itemId);
-  }, [itemId]);
-
   const item = items.find(it => it.id === parseInt(itemId, 10));
 
   if (!item) {
     return <div>Loading...</div>;
   }
 
-  const itemComments = comments[itemId] || [];
+  const itemComments = item.comments;
   const user = item.user;
 
   const formatDateTime = (dateTimeString) => {

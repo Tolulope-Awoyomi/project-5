@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ItemsContext } from '../components/context/items';
 import { UserContext } from '../components/context/user';
 import { useNavigate } from 'react-router-dom';
-import { Card, Container, StyledTable, SectionHeader, EditButton, DeleteButton, WelcomeMessage,  StyledFormContainer, StyledFormInput, StyledFormSelect, Header, LogoutButton, Section, BreadcrumbContainer, BreadcrumbLink, BreadcrumbSeparator } from '../styles/StyledComponents';
+import { Card, Container, StyledTable, SectionHeader, EditButton, DeleteButton, WelcomeMessage,  StyledFormContainer, StyledFormInput, StyledFormSelect, Header, LogoutButton, BreadcrumbContainer, BreadcrumbLink, BreadcrumbSeparator } from '../styles/StyledComponents';
 
 function Inventory() {
   const { items, categories, fetchItems, updateItem, deleteItem } = useContext(ItemsContext);

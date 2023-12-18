@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const UserContext = React.createContext();
 
@@ -20,6 +20,25 @@ function UserProvider({ children }) {
         })
     }, [])
 
+    const updateUser = useCallback(async (updatedUserInfo) => {
+        try {
+            const response = await fetch(`/users/${user.id}`, {
+                method: 'PATCH', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedUserInfo)
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setUser(data); 
+                return { success: true };
+            } else {
+                return { success: false, errors: data.errors || ['Update failed.'] };
+            }
+        } catch (error) {
+            return { success: false, errors: [error.message] };
+        }
+    }, [user.id]);
+
     function login(user) {
         setUser(user)
         setLoggedIn(true) 
@@ -37,7 +56,7 @@ function UserProvider({ children }) {
 
 
   return (
-    <UserContext.Provider value={{user, setUser, login, logout, signup, loggedIn}}>
+    <UserContext.Provider value={{user, setUser, login, logout, signup, loggedIn, updateUser}}>
         {children}
     </UserContext.Provider>
   )

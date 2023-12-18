@@ -11,10 +11,11 @@ import {
   Title, 
   Description, 
   SubmitButton, 
-  FlexContainer 
+  FlexContainer,
+  ManageAccountButton 
 } from '../styles/StyledComponents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faDolly } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faDolly, faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 function Welcome() {
   const { user, logout } = useContext(UserContext);
@@ -27,6 +28,10 @@ function Welcome() {
 
   function navigateToInventoryPage() {
     navigate("/inventory");
+  }
+
+  function navigateToManageAccount() {
+    navigate("/manage-account"); 
   }
 
   function logoutUser() {
@@ -55,7 +60,10 @@ function Welcome() {
     <Container>
       <Header>
         <WelcomeMessage>Welcome, {user.business_name}!</WelcomeMessage>
-        <LogoutButton onClick={logoutUser}>Log Out</LogoutButton>
+        <div>
+          <FontAwesomeIcon icon={faUserCog} onClick={navigateToManageAccount} />
+          <LogoutButton onClick={logoutUser}>Log Out</LogoutButton>
+        </div>
       </Header>
       {error && <ErrorAlert>{error}</ErrorAlert>}
 

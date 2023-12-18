@@ -10,6 +10,8 @@ import ItemDetail from "../pages/ItemDetail";
 import Welcome from "./Welcome";
 import Inventory from "../pages/Inventory";
 import AddItem from "../pages/AddItem";
+import ManageAccount from "../pages/ManageAccount";
+import EditProfile from "../pages/EditProfile";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/additem" element={<AddItem />} />
+          <Route path="/manage-account" element={<ManageAccount />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Routes>
       </div>
     </>

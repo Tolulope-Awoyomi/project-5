@@ -87,6 +87,7 @@ const SubmitButton = styled.button`
   display: block; 
   margin-left: auto;
   margin-right: auto; 
+  font-weight: bold;
 
   &:hover {
     background-color: #933e33;
@@ -387,7 +388,6 @@ const CategoriesMenu = styled.div`
   background-color: #fffaf0; 
 `;
 
-
 const CategoryButton = styled.button`
   background: #4CAF50; 
   border: none;
@@ -569,6 +569,35 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
+const CommentSection = styled.div`
+  margin-top: 30px;
+  background-color: #fffaf0; // Matching your theme's background color
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+`;
+
+const Comment = styled.div`
+  background-color: #fff; // White background for individual comments
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  p {
+    margin: 5px 0;
+    color: #333; // Dark text color for better readability
+    font-size: 14px;
+  }
+
+  p:last-child {
+    font-style: italic;
+    color: #666; // Lighter color for commenter name
+  }
+`;
+
 export {
   Container,
   Card,
@@ -632,5 +661,7 @@ export {
   CommentFormWrapper, 
   StyledForm, 
   StyledInput, 
-  StyledTextArea
+  StyledTextArea,
+  Comment,
+  CommentSection
 };

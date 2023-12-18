@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import { ItemsContext } from '../components/context/items';
-import { DetailWrapper, ItemTitle, Detail, Subtitle, Address } from '../styles/StyledComponents';
+import { DetailWrapper, ItemTitle, Detail, Subtitle, Address, CommentSection, Comment } from '../styles/StyledComponents';
 
 function ItemDetail() {
   const { itemId } = useParams();
-  const { items } = useContext(ItemsContext);
+  const { items, fetchItemComments, comments } = useContext(ItemsContext);
+
+  useEffect(() => {
+    fetchItemComments(itemId);
+  }, [itemId]);
 
   const item = items.find(it => it.id === parseInt(itemId, 10));
 
@@ -14,6 +18,7 @@ function ItemDetail() {
     return <div>Loading...</div>;
   }
 
+  const itemComments = comments[itemId] || [];
   const user = item.user;
 
   const formatDateTime = (dateTimeString) => {
@@ -25,7 +30,7 @@ function ItemDetail() {
       hour: '2-digit',
       minute: '2-digit',
       hour12: true,
-      timeZoneName: 'short' 
+      timeZoneName: 'short'
     };
     
     return date.toLocaleString('en-US', options).replace(/:00(?=\s[a|p]m)/i, '');
@@ -46,10 +51,18 @@ function ItemDetail() {
           <Address>{user.address}</Address>
         </>
       )}
-      <CommentForm itemID={item.id}></CommentForm>
-      {/* <CommentButton onClick={}>
-        Add Comment
-      </CommentButton> */}
+      
+      <CommentForm itemId={item.id} />
+      
+      <CommentSection>
+        <h3>Comments:</h3>
+        {itemComments.map((comment, index) => (
+          <Comment key={index}>
+            <p>{comment.content}</p>
+            <p>Comment by: {comment.commenter_name || 'Anonymous'}</p>
+          </Comment>
+        ))}
+      </CommentSection>
     </DetailWrapper>
   );
 }

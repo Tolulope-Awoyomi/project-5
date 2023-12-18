@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
 import { CommentFormWrapper, StyledForm, StyledInput, StyledTextArea, SubmitButton } from "../styles/StyledComponents";
 
-const CommentForm = ({ itemID }) => {
+const CommentForm = ({ itemId }) => {
   const [commentContent, setCommentContent] = useState('');
   const [commenterName, setCommenterName] = useState('');
   const { addItemComment } = useContext(ItemsContext);
@@ -13,10 +13,10 @@ const CommentForm = ({ itemID }) => {
    
     const comment = {
       content: commentContent,
-      commenterName: commenterName, 
-      item_id: itemID, 
+      commenter_name: commenterName, 
+      item_id: itemId, 
     };
-    addItemComment(itemID, comment);
+    addItemComment(itemId, comment);
     setCommentContent('');
     setCommenterName('');
   };

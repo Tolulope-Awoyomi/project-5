@@ -89,20 +89,33 @@ function ItemsProvider({ children }) {
       })
       .then(response => response.json())
       .then(newComment => {
-        setComments(prevComments => ({
-          ...prevComments,
-          [itemId]: [...(prevComments[itemId] || []), newComment]
+        setItems(prevItems => prevItems.map(item => {
+          if (item.id === itemId) {
+            const updatedComments = Array.isArray(item.comments) ? [...item.comments, newComment] : [newComment];
+            return { ...item, comments: updatedComments };
+          }
+          return item;
         }));
       })
-      .catch(error => {
-        setError(error.message);
-        console.error('Error:', error);
-      });
-    };  
+      .catch(error => console.error('Error:', error));
+    };
+    
   
+    const fetchItemComments = (itemId) => {
+      fetch(`/items/${itemId}/comments`)
+        .then(response => response.json())
+        .then(comments => {
+          setComments(prevComments => ({
+            ...prevComments,
+            [itemId]: comments
+          }));
+        })
+        .catch(error => console.error('Error:', error));
+    };
+    
 
   return (
-    <ItemsContext.Provider value={{ items, setItems, addItem, updateItem, deleteItem, fetchItems, addItemComment, comments, categories, loading, error }}>
+    <ItemsContext.Provider value={{ items, setItems, addItem, updateItem, deleteItem, fetchItems, addItemComment, fetchItemComments, comments, categories, loading, error }}>
       {children}
     </ItemsContext.Provider>
   );

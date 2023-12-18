@@ -27,6 +27,7 @@ const CentreHeader = styled.div`
 `;
 
 const SectionHeader = styled.h2`
+  margin-top: 30px;
   font-size: 20px;
   color: #333;
   text-align: center;
@@ -35,17 +36,17 @@ const SectionHeader = styled.h2`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
-  background-color: #fffaf0; 
-  font-weight: bold; 
+  background-color: #fffaf0;
 `;
 
 const WelcomeMessage = styled.h2`
-  flex-grow: 1;
+  flex: 0.8;
   color: #333;
-  text-align: left; 
+  text-align: left; // Align text to the left
+  margin-right: auto; // Removed fixed margin
 `;
 
 const LogoutButton = styled.button`
@@ -55,6 +56,7 @@ const LogoutButton = styled.button`
   color: white;
   border: none;
   cursor: pointer;
+  text-align: right; // Align text to the right
   &:hover {
     background-color: #933e33;
   }
@@ -256,16 +258,37 @@ const PageHeader = styled.div`
 
 const BreadcrumbContainer = styled.div`
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  align-items: center;
+  flex: 1; // Allows the breadcrumbs to take up twice as much space as the side components
+  padding: 0.5rem 0;
+  background-color: #fffaf0;
 `;
 
+
 const BreadcrumbLink = styled(NavLink)`
-  color: #007bff;
+  color: #c44536; 
   text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.25rem;
+  font-weight: bold; 
+  border-radius: 4px; 
+  
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline; 
+    background-color: #e7e6e1; 
+    color: #933e33; 
   }
+
+  &.active {
+    color: #7a332a; 
+    border-bottom: 2px solid #c44536; 
+  }
+`;
+
+const BreadcrumbSeparator = styled.span`
+  color: #c44536;
+  padding: 0 0.5rem; 
+  font-size: 1rem; 
 `;
 
 const Section = styled.section`
@@ -573,7 +596,7 @@ const StyledTextArea = styled.textarea`
 
 const CommentSection = styled.div`
   margin-top: 30px;
-  background-color: #fffaf0; // Matching your theme's background color
+  background-color: #fffaf0; 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -582,7 +605,7 @@ const CommentSection = styled.div`
 `;
 
 const Comment = styled.div`
-  background-color: #fff; // White background for individual comments
+  background-color: #fff; 
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
@@ -590,15 +613,16 @@ const Comment = styled.div`
   
   p {
     margin: 5px 0;
-    color: #333; // Dark text color for better readability
+    color: #333; 
     font-size: 14px;
   }
 
   p:last-child {
     font-style: italic;
-    color: #666; // Lighter color for commenter name
+    color: #666; 
   }
 `;
+
 
 export {
   Container,
@@ -632,6 +656,7 @@ export {
   PageHeader,
   BreadcrumbContainer,
   BreadcrumbLink,
+  BreadcrumbSeparator,
   Section,
   FormCard,
   ButtonContainer,

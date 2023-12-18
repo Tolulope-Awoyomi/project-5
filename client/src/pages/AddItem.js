@@ -1,21 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../components/context/items';
+import { UserContext } from '../components/context/user';
 import CategoryDropdown from './CategoryDropDown'; 
-import { 
-  FormContainer, 
-  FormGroup, 
-  FormLabel, 
-  FormInput, 
-  SubmitButton, 
-  ErrorAlert, 
-  Container,
-  Card, 
-  CentreHeader
-} from '../styles/StyledComponents'; 
+import { FormContainer, FormGroup, FormLabel, FormInput, SubmitButton, ErrorAlert, Container, Card, CentreHeader, LogoutButton, Header, WelcomeMessage, BreadcrumbContainer, BreadcrumbLink, BreadcrumbSeparator } from '../styles/StyledComponents'; 
 
 function AddItem() {
   const { addItem } = useContext(ItemsContext);
+  const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
   const [newItem, setNewItem] = useState({
     name: '',
@@ -30,6 +22,11 @@ function AddItem() {
   });
   const [errors, setErrors] = useState([]);
   
+  const logoutUser = () => {
+    logout(); 
+    navigate('/login');
+  };
+
   const validateForm = () => {
     const errors = [];
   
@@ -108,8 +105,17 @@ function AddItem() {
   };
   
   return (
-    <>
-      <Container>
+    <Container>
+      <Header>
+          {user && user.business_name && <WelcomeMessage>Welcome, {user.business_name}!</WelcomeMessage>} 
+          <BreadcrumbContainer>
+            <BreadcrumbLink to="/food-business">Services</BreadcrumbLink>
+            <BreadcrumbSeparator>/</BreadcrumbSeparator>
+            <BreadcrumbLink to="/additem">Add Item</BreadcrumbLink>
+        </BreadcrumbContainer>
+          <LogoutButton onClick={logoutUser}>Log Out</LogoutButton> 
+        </Header>
+
           <Card>
             <CentreHeader> <h4>Add Item</h4> </CentreHeader>
           
@@ -221,8 +227,7 @@ function AddItem() {
                 </form>
             </FormContainer>
           </Card>
-          </Container>
-      </>
+        </Container>
   );
 }
 

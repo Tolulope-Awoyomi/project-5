@@ -1,15 +1,24 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ItemsContext } from '../components/context/items';
-import { Card, Container, StyledTable, SectionHeader, EditButton, DeleteButton, StyledFormContainer, StyledFormInput, StyledFormSelect } from '../styles/StyledComponents';
+import { UserContext } from '../components/context/user';
+import { useNavigate } from 'react-router-dom';
+import { Card, Container, StyledTable, SectionHeader, EditButton, DeleteButton, WelcomeMessage,  StyledFormContainer, StyledFormInput, StyledFormSelect, Header, LogoutButton, Section, BreadcrumbContainer, BreadcrumbLink, BreadcrumbSeparator } from '../styles/StyledComponents';
 
 function Inventory() {
   const { items, categories, fetchItems, updateItem, deleteItem } = useContext(ItemsContext);
+  const { user, logout } = useContext(UserContext); 
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [editItem, setEditItem] = useState(null);
 
   useEffect(() => {
     fetchItems();
   }, []);
+
+  const logoutUser = () => {
+    logout(); 
+    navigate('/login');
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -55,10 +64,19 @@ function Inventory() {
 
   return (
     <Container>
-      <SectionHeader>Item Inventory</SectionHeader>
+      <Header>
+        {user && user.business_name && <WelcomeMessage>Welcome, {user.business_name}!</WelcomeMessage>} 
+        <BreadcrumbContainer>
+          <BreadcrumbLink to="/food-business">Services</BreadcrumbLink>
+          <BreadcrumbSeparator>/</BreadcrumbSeparator>
+          <BreadcrumbLink to="/inventory">Inventory</BreadcrumbLink>
+      </BreadcrumbContainer>
+        <LogoutButton onClick={logoutUser}>Log Out</LogoutButton> 
+      </Header>
 
       {isEditing ? (
         <Card>
+          <SectionHeader>Edit Item</SectionHeader>
           <StyledFormContainer>
             <StyledFormInput type="text" name="name" placeholder="Name" value={editItem.name} onChange={handleChange} />
             <StyledFormInput type="number" name="quantity" placeholder="Quantity" value={editItem.quantity} onChange={handleChange} />
@@ -85,6 +103,8 @@ function Inventory() {
           
         </Card>
       ) : (
+        <>
+        <SectionHeader>Item Inventory</SectionHeader>
         <StyledTable>
           <thead>
             <tr>
@@ -100,7 +120,7 @@ function Inventory() {
             </tr>
           </thead>
           <tbody>
-            {items.map((item) => (
+            {Array.isArray(items) && items.map((item) => (
               <tr key={item.id}>
                 <td style={{ textAlign: "center" }}>{item.name}</td>
                 <td style={{ textAlign: "center" }}>{item.quantity}</td>
@@ -127,6 +147,7 @@ function Inventory() {
             ))}
           </tbody>
         </StyledTable>
+        </>
       )}
     </Container>
   );

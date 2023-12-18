@@ -529,6 +529,44 @@ const CommentButton = styled.button`
   &:hover {
     background-color: #933e33; 
   }
+`; 
+
+const CommentFormWrapper = styled.div`
+  background-color: #fffaf0; 
+  padding: 1em;
+  margin-top: 2em;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+`;
+
+const StyledInput = styled.input`
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 0.5em;
+
+  &:focus {
+    outline: none;
+    border-color: #c44536; 
+  }
+`;
+
+const StyledTextArea = styled.textarea`
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 100px; 
+  resize: vertical; 
+  &:focus {
+    outline: none;
+    border-color: #c44536; 
+  }
 `;
 
 export {
@@ -590,5 +628,9 @@ export {
   Detail, 
   Subtitle, 
   Address, 
-  CommentButton
+  CommentButton,
+  CommentFormWrapper, 
+  StyledForm, 
+  StyledInput, 
+  StyledTextArea
 };

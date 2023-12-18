@@ -8,6 +8,7 @@ function ItemsProvider({ children }) {
   const [items, setItems] = useState([]); 
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [comments, setComments] = useState({});
   const navigate = useNavigate()
 
   const fetchItems = () => {
@@ -79,10 +80,29 @@ function ItemsProvider({ children }) {
       })
       .catch(error => setError(error.message));
     };
+
+    const addItemComment = (itemId, comment) => {
+      fetch(`/items/${itemId}/comments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(comment),
+      })
+      .then(response => response.json())
+      .then(newComment => {
+        setComments(prevComments => ({
+          ...prevComments,
+          [itemId]: [...(prevComments[itemId] || []), newComment]
+        }));
+      })
+      .catch(error => {
+        setError(error.message);
+        console.error('Error:', error);
+      });
+    };  
   
 
   return (
-    <ItemsContext.Provider value={{ items, setItems, addItem, updateItem, deleteItem, fetchItems, categories, loading, error }}>
+    <ItemsContext.Provider value={{ items, setItems, addItem, updateItem, deleteItem, fetchItems, addItemComment, comments, categories, loading, error }}>
       {children}
     </ItemsContext.Provider>
   );

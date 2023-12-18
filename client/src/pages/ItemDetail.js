@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import CommentForm from './CommentForm';
 import { ItemsContext } from '../components/context/items';
-import { DetailWrapper, ItemTitle, Detail, Subtitle, Address, CommentButton } from '../styles/StyledComponents';
+import { DetailWrapper, ItemTitle, Detail, Subtitle, Address } from '../styles/StyledComponents';
 
 function ItemDetail() {
   const { itemId } = useParams();
@@ -45,6 +46,7 @@ function ItemDetail() {
           <Address>{user.address}</Address>
         </>
       )}
+      <CommentForm itemID={item.id}></CommentForm>
       {/* <CommentButton onClick={}>
         Add Comment
       </CommentButton> */}

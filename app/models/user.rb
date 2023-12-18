@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :items
+    has_many :comments
 
     validates :business_name, :email, :phone_number, :address, :fda_registration_number, :password, :password_confirmation, presence: true
     validates :business_name, :email, :fda_registration_number, uniqueness: true

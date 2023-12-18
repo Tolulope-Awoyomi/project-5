@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
 import { useNavigate } from 'react-router-dom';
-import { CategoriesMenu, CategoryButton, SearchContainer, SearchInput, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
+import { CentreHeader, CategoriesMenu, CategoryButton, SearchContainer, SearchInput, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
 
 function ItemsMenu() {
   const { items, categories } = useContext(ItemsContext);
@@ -76,6 +76,7 @@ function ItemsMenu() {
 
   return (
     <div>
+      <CentreHeader> <h4>Browse Item Menu</h4> </CentreHeader>
      <CategoriesMenu>
         <CategoryButton onClick={() => handleCategoryClick('All')}>
           All

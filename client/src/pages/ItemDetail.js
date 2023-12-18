@@ -55,11 +55,12 @@ function ItemDetail() {
       <CommentForm itemId={item.id} />
       
       <CommentSection>
-        <h3>Comments:</h3>
+        <h3>Comments </h3>
         {itemComments.map((comment, index) => (
           <Comment key={index}>
-            <p>{comment.content}</p>
+            <p style={{ fontWeight: 'bold' }}>{comment.content}</p>
             <p>Comment by: {comment.commenter_name || 'Anonymous'}</p>
+            <p>Created at: {formatDateTime(comment.created_at)}</p>
           </Comment>
         ))}
       </CommentSection>

@@ -39,6 +39,7 @@ const Header = styled.div`
   align-items: center; 
   padding: 20px;
   background-color: #fffaf0; 
+  font-weight: bold; 
 `;
 
 const WelcomeMessage = styled.h2`
@@ -473,6 +474,7 @@ const DetailButton = styled.button`
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
+  font-weight: bold; 
   
   cursor: pointer;
   width: 100%;

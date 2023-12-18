@@ -53,18 +53,25 @@ function ItemsMenu() {
       handleCategoryClick('All');
     }, []); 
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+    const formatDateTime = (dateTimeString) => {
+      const date = new Date(dateTimeString);
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZoneName: 'short' 
+      };
+      
+      return date.toLocaleString('en-US', options).replace(/:00(?=\s[a|p]m)/i, '');
+    };
+    
 
-  const showItemDetails = (item) => {
-    alert(`Item: ${item.name}\nBusiness Name: ${item.user.business_name}\nQuantity: ${item.quantity}`);
-  };
+    const showItemDetails = (item) => {
+      alert(`Item: ${item.name}\nBusiness Name: ${item.user.business_name}\nQuantity: ${item.quantity}`);
+    };
 
   return (
     <div>
@@ -78,7 +85,7 @@ function ItemsMenu() {
           </CategoryButton>
         ))}
       </CategoriesMenu>
-      
+
       <SearchContainer>
         <SearchInput type="text" placeholder="Search Item Name" value={searchTerm} onChange={handleSearch} />
         <SearchInput type="text" placeholder="Search By Location" value={searchLocation} onChange={handleSearchLocation} />
@@ -94,7 +101,7 @@ function ItemsMenu() {
             <ItemDetail>Dietary Classification: {item.dietary_classification}</ItemDetail>
             <ItemDetail>Nutrition Facts: {item.nutrition_facts}</ItemDetail>
             <ItemDetail>Additional Info: {item.additional_info}</ItemDetail>
-            <ItemDetail>Available Until: {formatDate(item.available_until)}</ItemDetail>
+            <ItemDetail>Available Until: {formatDateTime(item.available_until)}</ItemDetail>
             <DetailButton onClick={() => showItemDetails(item)}>
               Show Details
             </DetailButton>

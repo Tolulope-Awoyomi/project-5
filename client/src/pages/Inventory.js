@@ -36,20 +36,17 @@ function Inventory() {
 
   const formatDateForInput = (dateString) => {
     const date = new Date(dateString);
-    const offset = date.getTimezoneOffset(); // get the timezone offset in minutes
-    const adjustedDate = new Date(date.getTime() - (offset * 60 * 1000)); // adjust the date by the offset
   
     const pad = (num) => num.toString().padStart(2, '0');
   
-    const year = adjustedDate.getUTCFullYear();
-    const month = pad(adjustedDate.getUTCMonth() + 1);
-    const day = pad(adjustedDate.getUTCDate());
-    const hours = pad(adjustedDate.getUTCHours());
-    const minutes = pad(adjustedDate.getUTCMinutes());
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1); 
+    const day = pad(date.getDate());
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
   
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
-      
 
   const getCategoryName = (categoryId) => {
     const category = categories.find(cat => cat.id === categoryId);

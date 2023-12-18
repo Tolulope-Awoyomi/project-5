@@ -36,8 +36,20 @@ function Inventory() {
 
   const formatDateForInput = (dateString) => {
     const date = new Date(dateString);
-    return date.toISOString().split('T')[0];
+    const offset = date.getTimezoneOffset(); // get the timezone offset in minutes
+    const adjustedDate = new Date(date.getTime() - (offset * 60 * 1000)); // adjust the date by the offset
+  
+    const pad = (num) => num.toString().padStart(2, '0');
+  
+    const year = adjustedDate.getUTCFullYear();
+    const month = pad(adjustedDate.getUTCMonth() + 1);
+    const day = pad(adjustedDate.getUTCDate());
+    const hours = pad(adjustedDate.getUTCHours());
+    const minutes = pad(adjustedDate.getUTCMinutes());
+  
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
+      
 
   const getCategoryName = (categoryId) => {
     const category = categories.find(cat => cat.id === categoryId);
@@ -62,7 +74,12 @@ function Inventory() {
             <StyledFormInput type="text" name="dietary_classification" placeholder="Dietary Classification" value={editItem.dietary_classification} onChange={handleChange} />
             <StyledFormInput type="text" name="nutrition_facts" placeholder="Nutrition Facts" value={editItem.nutrition_facts} onChange={handleChange} />
             <StyledFormInput type="text" name="additional_info" placeholder="Additional Information" value={editItem.additional_info} onChange={handleChange} />
-            <StyledFormInput type="datetime-local" name="available_until" value={formatDateForInput(editItem.available_until)} onChange={handleChange} />
+            <StyledFormInput
+              type="datetime-local"
+              name="available_until"
+              value={formatDateForInput(editItem.available_until)}
+              onChange={handleChange}
+            />
           </StyledFormContainer>
           <br />
          
@@ -95,7 +112,16 @@ function Inventory() {
                 <td style={{ textAlign: "center" }}>{item.dietary_classification}</td>
                 <td style={{ textAlign: "center" }}>{item.nutrition_facts}</td>
                 <td style={{ textAlign: "center" }}>{item.addtional_info}</td>
-                <td style={{ textAlign: "center" }}>{item.available_until ? formatDateForInput(item.available_until) : ''}</td>
+                <td style={{ textAlign: "center" }}>
+                  {item.available_until ? new Date(item.available_until).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                  }) : ''}
+                </td>
                 <td>
                   <EditButton onClick={() => handleEdit(item)}>Edit</EditButton>
                   <DeleteButton onClick={() => handleDelete(item.id)}>Delete</DeleteButton>

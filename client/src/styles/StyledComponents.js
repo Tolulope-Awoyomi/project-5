@@ -21,8 +21,16 @@ const Card = styled.div`
 `;
 
 const CentreHeader = styled.div`
+  font-size: 20px; 
   margin-bottom: 16px;
   text-align: center;
+`;
+
+const SectionHeader = styled.h2`
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Header = styled.div`
@@ -188,7 +196,6 @@ const FlexContainer = styled.div`
   margin: 20px 0;
 `;
 
-
 const FormLabel = styled.label`
   display: block;
   margin-bottom: 5px;
@@ -218,6 +225,21 @@ const FormSelect = styled.select`
     outline: none;
   }
 `;
+
+const CategoryDropDownFormSelect = styled.select`
+  padding: 8px;
+  width: 54%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  text-align: center;
+ 
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  `;
 
 const FormError = styled.p`
   color: #721c24;
@@ -323,13 +345,6 @@ const DeleteButton = styled(StyledButton)`
   }
 `;
 
-const SectionHeader = styled.h2`
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-`;
-
 const StyledFormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -406,5 +421,6 @@ export {
   EditButton,
   StyledFormContainer,
   StyledFormInput,
-  StyledFormSelect
+  StyledFormSelect,
+  CategoryDropDownFormSelect
 };

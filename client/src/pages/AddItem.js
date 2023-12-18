@@ -20,13 +20,13 @@ function AddItem() {
   const [newItem, setNewItem] = useState({
     name: '',
     quantity: '',
-    addtional_info: '',
-    available_until: '',
-    expiration_date: '',
+    item_category_id: '',
     allergens: '',
     dietary_classification: '',
     nutrition_facts: '',
-    item_category_id: ''
+    addtional_info: '',
+    available_until: '',
+    // expiration_date: '',
   });
   const [errors, setErrors] = useState([]);
   
@@ -49,15 +49,15 @@ function AddItem() {
       errors.push('Available until date cannot be in the past.');
     }
   
-    if (!newItem.expiration_date) {
-      errors.push('Expiration date is required.');
-    } else if (new Date(newItem.expiration_date) < new Date()) {
-      errors.push('Expiration date cannot be in the past.');
-    }
+    // if (!newItem.expiration_date) {
+    //   errors.push('Expiration date is required.');
+    // } else if (new Date(newItem.expiration_date) < new Date()) {
+    //   errors.push('Expiration date cannot be in the past.');
+    // }
 
-    if (!newItem.allergens) {
-      errors.push('Allergens information is required.');
-    }
+    // if (!newItem.allergens) {
+    //   errors.push('Allergens information is required.');
+    // }
   
     if (!newItem.dietary_classification) {
       errors.push('Dietary classification is required.');
@@ -94,13 +94,13 @@ function AddItem() {
     const itemData = {
       name: newItem.name,
       quantity: newItem.quantity,
-      addtional_info: newItem.addtional_info,
-      available_until: newItem.available_until,
-      expiration_date: newItem.expiration_date,
+      item_category_id: newItem.item_category_id,
       allergens: newItem.allergens,
       dietary_classification: newItem.dietary_classification,
       nutrition_facts: newItem.nutrition_facts,
-      item_category_id: newItem.item_category_id
+      available_until: newItem.available_until,
+      addtional_info: newItem.addtional_info,
+      // expiration_date: newItem.expiration_date,
     };
   console.log(itemData)
     addItem(itemData);
@@ -139,6 +139,11 @@ function AddItem() {
                   </FormGroup>
 
                   <FormGroup>
+                    <FormLabel htmlFor="itemCategory">Category</FormLabel>
+                    <CategoryDropdown value={newItem.item_category_id} onChange={handleChange} />
+                  </FormGroup>
+
+                  {/* <FormGroup>
                     <FormLabel htmlFor="expiration_date">Expiration Date</FormLabel>
                     <FormInput
                       type="date"
@@ -147,7 +152,7 @@ function AddItem() {
                       value={newItem.expiration_date}
                       onChange={handleChange}
                     />
-                  </FormGroup>
+                  </FormGroup> */}
 
                   <FormGroup>
                     <FormLabel htmlFor="allergens">Allergens</FormLabel>
@@ -183,28 +188,23 @@ function AddItem() {
                   </FormGroup>
 
                   <FormGroup>
-                    <FormLabel htmlFor="available_until">Available Until</FormLabel>
-                    <FormInput
-                      type="datetime-local" 
-                      id="available_until" 
-                      name="available_until" 
-                      value={newItem.available_until} 
-                      onChange={handleChange}
-                    />
-                  </FormGroup>
-
-                  <FormGroup>
-                    <FormLabel htmlFor="itemCategory">Category</FormLabel>
-                    <CategoryDropdown value={newItem.item_category_id} onChange={handleChange} />
-                  </FormGroup>
-
-                  <FormGroup>
                     <FormLabel htmlFor="addtional_info">Additional Information</FormLabel>
                     <FormInput
                       type="text"
                       id="addtional_info"
                       name="addtional_info"
                       value={newItem.addtional_info}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormLabel htmlFor="available_until">Available Until</FormLabel>
+                    <FormInput
+                      type="datetime-local" 
+                      id="available_until" 
+                      name="available_until" 
+                      value={newItem.available_until} 
                       onChange={handleChange}
                     />
                   </FormGroup>

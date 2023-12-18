@@ -16,6 +16,10 @@ class ItemsController < ApplicationController
         render json: @items, each_serializer: ItemSerializer
     end
 
+    def show
+        render json: @item, status: :ok, serializer: ItemSerializer
+    end
+
     def update
         if @item.update(items_params)
             render json: @item, status: :ok, serializer: ItemSerializer

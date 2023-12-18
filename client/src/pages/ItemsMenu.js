@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
+import { useNavigate } from 'react-router-dom';
 import { CategoriesMenu, CategoryButton, SearchContainer, SearchInput, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
 
 function ItemsMenu() {
@@ -8,6 +9,7 @@ function ItemsMenu() {
   const [searchLocation, setSearchLocation] = useState('');
   const [searchBusinessName, setSearchBusinessName] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -68,9 +70,8 @@ function ItemsMenu() {
       return date.toLocaleString('en-US', options).replace(/:00(?=\s[a|p]m)/i, '');
     };
     
-
-    const showItemDetails = (item) => {
-      alert(`Item: ${item.name}\nBusiness Name: ${item.user.business_name}\nQuantity: ${item.quantity}`);
+    const handleMoreDetailsClick = (itemId) => {
+      navigate(`/items/${itemId}`);
     };
 
   return (
@@ -101,9 +102,10 @@ function ItemsMenu() {
             <ItemDetail>Dietary Classification: {item.dietary_classification}</ItemDetail>
             <ItemDetail>Nutrition Facts: {item.nutrition_facts}</ItemDetail>
             <ItemDetail>Additional Info: {item.additional_info}</ItemDetail>
+            <ItemDetail>Restaurant: {item.user.business_name}</ItemDetail>
             <ItemDetail>Available Until: {formatDateTime(item.available_until)}</ItemDetail>
-            <DetailButton onClick={() => showItemDetails(item)}>
-              Show Details
+            <DetailButton onClick={() => handleMoreDetailsClick(item.id)}>
+              More Details
             </DetailButton>
           </ItemCard>
         ))}

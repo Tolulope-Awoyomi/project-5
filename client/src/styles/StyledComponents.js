@@ -382,19 +382,23 @@ const CategoriesMenu = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 10px; 
+  padding-top: 20px; 
+  background-color: #fffaf0; 
 `;
 
+
 const CategoryButton = styled.button`
-  background: #4CAF50;
+  background: #4CAF50; 
   border: none;
   color: white;
   padding: 10px 15px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold; 
   &:hover {
-    background-color: #45a049;
+    background-color: #45a049; 
   }
 `;
 
@@ -402,7 +406,10 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; 
+  padding-bottom: 20px; 
+  padding-top: 20px;
+  background-color: #fffaf0; 
 `;
 
 const SearchInput = styled.input`
@@ -411,6 +418,9 @@ const SearchInput = styled.input`
   border-radius: 5px;
   width: 100%;
   max-width: 300px;
+  &:focus {
+    border-color: #4CAF50; 
+  }
 `;
 
 const ItemsList = styled.div`
@@ -418,38 +428,108 @@ const ItemsList = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
+  padding-top: 0; 
 `;
+
+// const ItemCard = styled.div`
+//   background: #fff;
+//   border: 1px solid #ddd;
+//   border-radius: 5px;
+//   padding: 15px;
+//   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+//   transition: box-shadow 0.3s; // Smooth transition for shadow effect
+//   &:hover {
+//     box-shadow: 0 4px 8px rgba(0,0,0,0.2); // Deeper shadow on hover
+//   }
+// `;
 
 const ItemCard = styled.div`
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+border-radius: 4px;
+background-color: #fff; 
+padding: 20px;
+max-width: 600px; 
+width: auto; 
+margin-left: auto; 
+margin-right: auto; 
+display: block; 
 `;
 
-const ItemName = styled.h4`
-  margin: 0;
+const ItemName = styled.h3`
+  color: #333; 
+  font-weight: bold; 
+  margin-top: 0; 
+  margin-bottom: 10px; 
 `;
 
 const ItemDetail = styled.p`
   margin: 5px 0;
-  color: #666;
+  color: #666; 
 `;
 
 const DetailButton = styled.button`
-  background: #0056b3;
+  background: #4CAF50; 
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
+  
   cursor: pointer;
   width: 100%;
+  margin-top: 10px; 
   &:hover {
-    background: #004494;
+    background: #45a049; 
   }
 `;
 
+const DetailWrapper = styled.div`
+  background-color: #fffaf0; 
+  color: #333; 
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; 
+`;
+
+const ItemTitle = styled.h1`
+  color: #c44536; 
+  margin-bottom: 16px;
+`;
+
+const Detail = styled.p`
+  color: #333; 
+  margin: 8px 0;
+  line-height: 1.6;
+  font-weight: bold; 
+`;
+
+const Subtitle = styled.h2`
+  color: #c44536; 
+  margin-top: 24px;
+`;
+
+const Address = styled.p`
+  color: #333; 
+  margin: 8px 0;
+  font-weight: bold; 
+`;
+
+const CommentButton = styled.button`
+  background-color: #c44536;
+  color: white;
+  padding: 10px 15px;
+  margin: 16px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #933e33; 
+  }
+`;
 
 export {
   Container,
@@ -504,5 +584,11 @@ export {
   ItemCard, 
   ItemName, 
   ItemDetail, 
-  DetailButton
+  DetailButton, 
+  DetailWrapper, 
+  ItemTitle, 
+  Detail, 
+  Subtitle, 
+  Address, 
+  CommentButton
 };

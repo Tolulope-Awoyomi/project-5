@@ -6,6 +6,7 @@ import Login from './Login';
 import NavBar from "./NavBar";
 import FoodBusiness from "./FoodBusiness";
 import ItemsMenu from "../pages/ItemsMenu";
+import ItemDetail from "../pages/ItemDetail";
 import Welcome from "./Welcome";
 import Inventory from "../pages/Inventory";
 import AddItem from "../pages/AddItem";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/beforelogin" element={<BeforeLogin />} />
           <Route path="/food-business" element={<FoodBusiness />} />
           <Route path="/items-menu" element={<ItemsMenu />} />
+          <Route path="/items/:itemId" element={<ItemDetail />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/additem" element={<AddItem />} />

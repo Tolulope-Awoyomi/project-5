@@ -71,14 +71,14 @@ function Welcome() {
         <IconBoxItem>
           <FontAwesomeIcon icon={faPlus} size="2x" />
           <Title>Add Item</Title>
-          <Description>Allows food business to submit food donations, ensuring they find their way to those in need.</Description>
+          <Description> Add Food Items to be fetched by those in need.</Description>
           <SubmitButton onClick={navigateToAddItemPage}>Add</SubmitButton>
         </IconBoxItem>
 
         <IconBoxItem>
           <FontAwesomeIcon icon={faDolly} size="2x" />
           <Title>Inventory</Title>
-          <Description>The gateway for food business to efficiently track their entire stock donations inventory.</Description>
+          <Description>Efficiently track your inventory.</Description>
           <SubmitButton onClick={navigateToInventoryPage}>View</SubmitButton>
         </IconBoxItem>
       </FlexContainer>

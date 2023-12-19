@@ -129,16 +129,16 @@ const ErrorAlert = styled.div`
 `;
 
 const StyledNav = styled.nav`
-  background-color: #fffaf0; 
+  background-color: #fffaf0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; 
   align-items: center;
 `;
 
 const StyledNavLink = styled(NavLink)`
-  background-color: #c44536;  
+  background-color: #c44536; 
   color: white;
   padding: 10px 20px;
   border-radius: 4px;
@@ -660,19 +660,17 @@ const Button = styled.button`
 `;
 
  const Logo = styled.img`
-  height: 40px; // Set the height according to your preference
-  // Add some space to the right if necessary
-  // Add any other styles you need
+  height: 40px; 
   margin-right: auto;
 `;
 
-
-// const WelcomeMessage = styled.h2`
-//   flex: 0.8;
-//   color: #333;
-//   text-align: left; 
-//   margin-right: auto; 
-// `;
+const NavLinksContainer = styled.div`
+  display: flex;
+  justify-content: center; 
+  flex: 1; 
+  margin-left: 1px; 
+  margin-right: 80px; 
+`;
 
 
 export {
@@ -746,5 +744,6 @@ export {
   EditProfileBreadcrumbContainer,
   SuccessSignupHeader,
   ItemsBreadcrumbContainer,
-  Logo
+  Logo,
+  NavLinksContainer
 };

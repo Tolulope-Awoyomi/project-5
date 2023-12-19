@@ -16,9 +16,9 @@ const FoodBusiness = () => {
     return !loggedIn ? (
         <>
             <Card>
-                <WelcomeText>Join Our Effort to Reduce Food Waste</WelcomeText>
+                <WelcomeText>Fetch some food today</WelcomeText>
                 <DescriptionText>
-                    Connect with our community to donate your excess food. Help us make a difference today!
+                    Join our community of Food Businesses to donate excess food. Do not throw unsold food away, fetch it out!
                 </DescriptionText>
             </Card>
             <LinksContainer>

@@ -1,5 +1,6 @@
 # app/controllers/comments_controller.rb
 class CommentsController < ApplicationController
+    skip_before_action :authorize, only: [:create, :index]
     before_action :set_item
   
     def create

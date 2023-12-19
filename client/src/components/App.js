@@ -26,7 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/beforelogin" element={<BeforeLogin />} />
           <Route path="/food-business" element={<FoodBusiness />} />
-          <Route path="/items-menu" element={<ItemsMenu />} />
+          <Route path="/items" element={<ItemsMenu />} />
           <Route path="/items/:itemId" element={<ItemDetail />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/inventory" element={<Inventory />} />

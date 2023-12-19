@@ -11,7 +11,7 @@ function ItemsProvider({ children }) {
   const [comments, setComments] = useState({});
   const navigate = useNavigate()
 
-  const fetchItems = () => {
+  const fetchAllItems = () => {
     setLoading(true);
     fetch("/items")
       .then(response => response.json())
@@ -24,6 +24,19 @@ function ItemsProvider({ children }) {
       });
   };
 
+  const fetchUserItems = () => {
+    setLoading(true);
+    fetch("/items/user_index")
+      .then(response => response.json())
+      .then(data => {
+        setItems(data);
+      })
+      .catch(error => {
+        setError("Failed to fetch your items. Please try again.");
+        setLoading(false);
+      });
+  };
+
   const fetchCategories = () => {
     fetch('/item_categories')
       .then(response => response.json())
@@ -32,7 +45,7 @@ function ItemsProvider({ children }) {
   };
 
   useEffect(() => {
-    fetchItems();
+    fetchAllItems();
     fetchCategories();
   }, []);
 
@@ -64,7 +77,6 @@ function ItemsProvider({ children }) {
     })
     .then(data => {
       setItems(prevItems => Array.isArray(prevItems) ? [...prevItems, data] : [data]);
-    //   fetchItems(); 
       navigate("/inventory");
     })    
     .catch(error => setError(error.message));
@@ -115,7 +127,7 @@ function ItemsProvider({ children }) {
     
 
   return (
-    <ItemsContext.Provider value={{ items, setItems, addItem, updateItem, deleteItem, fetchItems, addItemComment, fetchItemComments, comments, categories, loading, error }}>
+    <ItemsContext.Provider value={{ items, setItems, addItem, updateItem, deleteItem, fetchAllItems, fetchUserItems, addItemComment, fetchItemComments, comments, categories, loading, error }}>
       {children}
     </ItemsContext.Provider>
   );

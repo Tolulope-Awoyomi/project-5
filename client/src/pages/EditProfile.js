@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../components/context/user';
 import { useNavigate } from 'react-router-dom';
-import { FormContainer, FormGroup, FormLabel, FormInput, SubmitButton, ErrorAlert, Container, Card, CentreHeader, BreadcrumbContainer, BreadcrumbSeparator, BreadcrumbLink, Header, WelcomeMessage, EditButton, DeleteButton } from '../styles/StyledComponents';
+import { FormContainer, FormGroup, FormLabel, FormInput, LogoutButton, ErrorAlert, Container, Card, CentreHeader, EditProfileBreadcrumbContainer, BreadcrumbSeparator, BreadcrumbLink, Header, WelcomeMessage, EditButton, DeleteButton } from '../styles/StyledComponents';
 
 function EditProfile() {
-    const { user, updateUser } = useContext(UserContext);
+    const { user, updateUser, logout } = useContext(UserContext);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         business_name: user.business_name,
@@ -29,21 +29,30 @@ function EditProfile() {
         }
     };
 
+    const logoutUser = () => {
+        logout(); 
+        navigate('/login');
+      };
+
     const handleCancel = () => {
         navigate('/manage-account'); 
       };
 
     return (
         <Container> 
-            <Card> 
-                <BreadcrumbContainer>
+            <Header>
+                {user && user.business_name && <WelcomeMessage>Welcome, {user.business_name}!</WelcomeMessage>} 
+                <EditProfileBreadcrumbContainer>
                     <BreadcrumbLink to="/food-business">Services</BreadcrumbLink>
                     <BreadcrumbSeparator>/</BreadcrumbSeparator>
                     <BreadcrumbLink to="/manage-account">Manage Account</BreadcrumbLink>
                     <BreadcrumbSeparator>/</BreadcrumbSeparator>
                     <BreadcrumbLink to="/edit-profile">Edit Profile</BreadcrumbLink>
-                </BreadcrumbContainer>
+                </EditProfileBreadcrumbContainer>
+                <LogoutButton onClick={logoutUser}>Log Out</LogoutButton> 
+            </Header>
 
+            <Card>
                 <FormContainer>
                     <CentreHeader> <h4>Edit Profile</h4> </CentreHeader>
                     <form onSubmit={handleSubmit}>

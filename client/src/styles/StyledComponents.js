@@ -42,11 +42,19 @@ const Header = styled.div`
   background-color: #fffaf0;
 `;
 
+const SuccessSignupHeader = styled.div`
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  padding: 20px;
+  background-color: #fffaf0;
+`;
+
 const WelcomeMessage = styled.h2`
   flex: 0.8;
   color: #333;
-  text-align: left; // Align text to the left
-  margin-right: auto; // Removed fixed margin
+  text-align: left; 
+  margin-right: auto; 
 `;
 
 const LogoutButton = styled.button`
@@ -56,7 +64,7 @@ const LogoutButton = styled.button`
   color: white;
   border: none;
   cursor: pointer;
-  text-align: right; // Align text to the right
+  text-align: right; 
   &:hover {
     background-color: #933e33;
   }
@@ -108,6 +116,7 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   margin-bottom: 8px;
+  font-weight: bold; 
 `;
 
 const ErrorAlert = styled.div`
@@ -208,7 +217,7 @@ const FormLabel = styled.label`
 `;
 
 const FormInput = styled.input`
-  width: 50%;
+  width: 60%;
   padding: 8px;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -232,7 +241,7 @@ const FormSelect = styled.select`
 
 const CategoryDropDownFormSelect = styled.select`
   padding: 8px;
-  width: 54%;
+  width: 64%;
   border-radius: 4px;
   border: 1px solid #ccc;
   background-color: white;
@@ -259,11 +268,25 @@ const PageHeader = styled.div`
 const BreadcrumbContainer = styled.div`
   display: flex;
   align-items: center;
-  flex: 1; // Allows the breadcrumbs to take up twice as much space as the side components
+  flex: 1; 
   padding: 0.5rem 0;
   background-color: #fffaf0;
 `;
 
+const ItemsBreadcrumbContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 9; 
+  padding: 0.5rem 0;
+  background-color: #fffaf0;
+`;
+const EditProfileBreadcrumbContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1.3; 
+  padding: 0.5rem 0;
+  background-color: #fffaf0;
+`;
 
 const BreadcrumbLink = styled(NavLink)`
   color: #c44536; 
@@ -623,19 +646,6 @@ const Comment = styled.div`
   }
 `;
 
-const ManageAccountButton = styled.button`
-  padding: 10px 20px;
-  margin-right: 8px; 
-  border-radius: 4px;
-  background-color: #f0ad4e; 
-  color: white;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #ec971f;
-  }
-`;
-
 const Button = styled.button`
   padding: 10px 20px;
   margin: 10px;
@@ -717,6 +727,8 @@ export {
   StyledTextArea,
   Comment,
   CommentSection,
-  ManageAccountButton,
-  Button
+  Button, 
+  EditProfileBreadcrumbContainer,
+  SuccessSignupHeader,
+  ItemsBreadcrumbContainer
 };

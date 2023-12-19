@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show] 
   resources :items do
-    resources :comments, only: [:create, :index]
+    collection do  
+      get :user_index   
+    end
+    resources :comments, only: [:create, :index] 
   end
   resources :item_categories
   

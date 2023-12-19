@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Container, StyledTable, SectionHeader, EditButton, DeleteButton, WelcomeMessage,  StyledFormContainer, StyledFormInput, StyledFormSelect, Header, LogoutButton, BreadcrumbContainer, BreadcrumbLink, BreadcrumbSeparator } from '../styles/StyledComponents';
 
 function Inventory() {
-  const { items, categories, fetchItems, updateItem, deleteItem } = useContext(ItemsContext);
+  const { items, categories, fetchUserItems, updateItem, deleteItem } = useContext(ItemsContext);
   const { user, logout } = useContext(UserContext); 
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [editItem, setEditItem] = useState(null);
 
   useEffect(() => {
-    fetchItems();
+    fetchUserItems();
   }, []);
 
   const logoutUser = () => {
@@ -41,20 +41,6 @@ function Inventory() {
 
   const handleDelete = (itemId) => {
     deleteItem(itemId);
-  };
-
-  const formatDateForInput = (dateString) => {
-    const date = new Date(dateString);
-  
-    const pad = (num) => num.toString().padStart(2, '0');
-  
-    const year = date.getFullYear();
-    const month = pad(date.getMonth() + 1); 
-    const day = pad(date.getDate());
-    const hours = pad(date.getHours());
-    const minutes = pad(date.getMinutes());
-  
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
   const getCategoryName = (categoryId) => {
@@ -90,9 +76,10 @@ function Inventory() {
             <StyledFormInput type="text" name="nutrition_facts" placeholder="Nutrition Facts" value={editItem.nutrition_facts} onChange={handleChange} />
             <StyledFormInput type="text" name="additional_info" placeholder="Additional Information" value={editItem.additional_info} onChange={handleChange} />
             <StyledFormInput
-              type="datetime-local"
+              type="text"
               name="available_until"
-              value={formatDateForInput(editItem.available_until)}
+              placeholder="YYYY-MM-DD HH:mm"
+              value={editItem.available_until || ''}
               onChange={handleChange} 
             />
           </StyledFormContainer>
@@ -130,14 +117,7 @@ function Inventory() {
                 <td style={{ textAlign: "center" }}>{item.nutrition_facts}</td>
                 <td style={{ textAlign: "center" }}>{item.addtional_info}</td>
                 <td style={{ textAlign: "center" }}>
-                  {item.available_until ? new Date(item.available_until).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true
-                  }) : ''}
+                  {item.available_until || ''}
                 </td>
                 <td>
                   <EditButton onClick={() => handleEdit(item)}>Edit</EditButton>

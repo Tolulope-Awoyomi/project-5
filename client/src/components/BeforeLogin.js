@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSmile } from '@fortawesome/free-solid-svg-icons';
 import {
   Container,
   Card,
-  Header,
+  SuccessSignupHeader,
   LinkContainer,
   List,
   ListItem
@@ -13,13 +15,12 @@ function BeforeLogin() {
   return (
     <Container>
       <Card>
-        <Header>
-          <h3>Your signup was successful!</h3>
-        </Header>
+        <SuccessSignupHeader><h3>Your signup was successful!</h3></SuccessSignupHeader>
+        <FontAwesomeIcon icon={faSmile} />
         <LinkContainer>
           <List>
             <ListItem>
-              <Link to="/login">Click here to login.</Link>
+              <Link to="/login">Click here to login</Link>
             </ListItem>
           </List>
         </LinkContainer>

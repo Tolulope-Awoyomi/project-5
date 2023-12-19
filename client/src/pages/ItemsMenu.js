@@ -10,6 +10,8 @@ function ItemsMenu() {
   const [searchBusinessName, setSearchBusinessName] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const navigate = useNavigate();
+  const safeCategories = Array.isArray(categories) ? categories : [];
+  const safeItems = Array.isArray(items) ? items : [];
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -28,7 +30,7 @@ function ItemsMenu() {
     return category ? category.category : 'Unknown';
   };
 
-  const itemsWithCategoryNames = items.map(item => ({
+  const itemsWithCategoryNames = safeItems.map(item => ({
     ...item,
     category: getCategoryNameById(item.item_category_id)
   }));
@@ -81,7 +83,7 @@ function ItemsMenu() {
         <CategoryButton onClick={() => handleCategoryClick('All')}>
           All
         </CategoryButton>
-        {categories.map(category => (
+        {safeCategories.map(category => (
           <CategoryButton key={category.id} onClick={() => handleCategoryClick(category.id)}>
             {category.category}
           </CategoryButton>

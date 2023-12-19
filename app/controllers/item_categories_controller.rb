@@ -1,5 +1,6 @@
 class ItemCategoriesController < ApplicationController
-    before_action :set_item_category, only: [:show]
+  skip_before_action :authorize, only: :index
+  before_action :set_item_category, only: [:show]
   
     def index
       @item_categories = ItemCategory.all

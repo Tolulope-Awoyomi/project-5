@@ -11,8 +11,7 @@ import {
   Title, 
   Description, 
   SubmitButton, 
-  FlexContainer,
-  ManageAccountButton 
+  FlexContainer
 } from '../styles/StyledComponents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faDolly, faUserCog } from '@fortawesome/free-solid-svg-icons';

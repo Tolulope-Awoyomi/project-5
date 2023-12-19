@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-    before_action :set_current_user
+    before_action :authorize, except: :index
+    before_action :set_current_user, except: :index
     before_action :set_item, only: [:show, :update, :destroy]
 
     def create
@@ -12,6 +13,11 @@ class ItemsController < ApplicationController
     end
 
     def index
+        @items = Item.where("quantity > ?", 0).includes(:item_category)
+        render json: @items, each_serializer: ItemSerializer
+    end
+
+    def user_index
         @items = @current_user.items.where("quantity > ?", 0).includes(:item_category)
         render json: @items, each_serializer: ItemSerializer
     end

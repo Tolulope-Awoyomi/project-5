@@ -41,9 +41,9 @@ function AddItem() {
     }
   
     if (!newItem.available_until) {
-      errors.push('Available until date is required.');
-    } else if (new Date(newItem.available_until) < new Date()) {
-      errors.push('Available until date cannot be in the past.');
+      errors.push('Available until date and time is required.');
+    } else if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(newItem.available_until)) {
+      errors.push('Available until must be in the format YYYY-MM-DD HH:mm.');
     }
   
     // if (!newItem.expiration_date) {
@@ -99,7 +99,7 @@ function AddItem() {
       addtional_info: newItem.addtional_info,
       // expiration_date: newItem.expiration_date,
     };
-  console.log(itemData)
+  
     addItem(itemData);
     navigate('/inventory');
   };
@@ -205,12 +205,13 @@ function AddItem() {
                   </FormGroup>
 
                   <FormGroup>
-                    <FormLabel htmlFor="available_until">Available Until</FormLabel>
+                    <FormLabel htmlFor="available_until">Available Until (YYYY-MM-DD HH:mm)</FormLabel>
                     <FormInput
-                      type="datetime-local" 
-                      id="available_until" 
-                      name="available_until" 
-                      value={newItem.available_until} 
+                      type="text"
+                      id="available_until"
+                      name="available_until"
+                      placeholder="YYYY-MM-DD HH:mm"
+                      value={newItem.available_until}
                       onChange={handleChange}
                     />
                   </FormGroup>

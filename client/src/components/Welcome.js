@@ -59,10 +59,11 @@ function Welcome() {
     <Container>
       <Header>
         <WelcomeMessage>Welcome, {user.business_name}!</WelcomeMessage>
-        <div>
-          <FontAwesomeIcon icon={faUserCog} onClick={navigateToManageAccount} />
+        
+        <FontAwesomeIcon className="icon" icon={faUserCog} size="2x" onClick={navigateToManageAccount} />
+          
           <LogoutButton onClick={logoutUser}>Log Out</LogoutButton>
-        </div>
+        
       </Header>
       {error && <ErrorAlert>{error}</ErrorAlert>}
 

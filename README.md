@@ -13,7 +13,7 @@ Food Fetchy is an innovative platform designed to connect restaurants with exces
 - **Exclusive Access for Restaurants**: Only restaurants can sign up and login to manage food and track inventory.
 - **Inventory Management**: Restaurants can add, edit, and delete food from their inventory.
 - **Account Management**: Restaurants can manage their accounts, including editing profile details and deleting accounts.
-- **New signed up User Email Notification**: New users get an email notification when they sign up!
+- **New signed up User (Restaurant) Email Notification**: New restaurants get an email notification when they sign up!
 - **Google Map**: Users can use Google Map to navigate their way to restaurants.
 
 

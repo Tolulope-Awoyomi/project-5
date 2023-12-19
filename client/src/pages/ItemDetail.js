@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import { ItemsContext } from '../components/context/items';
-import { DetailWrapper, ItemTitle, Detail, Subtitle, Address, CommentSection, Comment, Container, Header, ItemsBreadcrumbContainer, BreadcrumbLink } from '../styles/StyledComponents';
+import { DetailWrapper, ItemTitle, Detail, Subtitle, Address, CommentSection, Comment, Container, Header, ItemsBreadcrumbContainer, BreadcrumbLink, BreadcrumbSeparator } from '../styles/StyledComponents';
 
 function ItemDetail() {
   const { itemId } = useParams();
@@ -28,6 +28,8 @@ function ItemDetail() {
       <Header>
         <ItemsBreadcrumbContainer>
           <BreadcrumbLink to="/items">Food Items</BreadcrumbLink>
+          <BreadcrumbSeparator>/</BreadcrumbSeparator>
+          <BreadcrumbLink to="#">My Food</BreadcrumbLink>
       </ItemsBreadcrumbContainer>
       </Header>
 

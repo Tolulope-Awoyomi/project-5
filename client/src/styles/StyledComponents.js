@@ -274,12 +274,12 @@ const BreadcrumbContainer = styled.div`
 `;
 
 const ItemsBreadcrumbContainer = styled.div`
-  display: flex;
   align-items: center;
   flex: 9; 
   padding: 0.5rem 0;
   background-color: #fffaf0;
 `;
+
 const EditProfileBreadcrumbContainer = styled.div`
   display: flex;
   align-items: center;

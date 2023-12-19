@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { CentreHeader, CategoriesMenu, CategoryButton, SearchContainer, SearchInput, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
 
 function ItemsMenu() {
-  const { items, categories } = useContext(ItemsContext);
+  const { items, categories, fetchAllItems } = useContext(ItemsContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchLocation, setSearchLocation] = useState('');
   const [searchBusinessName, setSearchBusinessName] = useState('');
@@ -54,6 +54,7 @@ function ItemsMenu() {
   });
 
     useEffect(() => {
+      fetchAllItems();
       handleCategoryClick('All');
     }, []); 
 

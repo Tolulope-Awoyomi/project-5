@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import { ItemsContext } from '../components/context/items';

@@ -138,7 +138,7 @@ const StyledNav = styled.nav`
 `;
 
 const StyledNavLink = styled(NavLink)`
-  background-color: #c44536; 
+  background-color: #c44536;  
   color: white;
   padding: 10px 20px;
   border-radius: 4px;
@@ -436,7 +436,7 @@ const CategoriesMenu = styled.div`
 `;
 
 const CategoryButton = styled.button`
-  background: #4CAF50; 
+  background: #c44536; 
   border: none;
   color: white;
   padding: 10px 15px;
@@ -515,7 +515,7 @@ const ItemDetail = styled.p`
 `;
 
 const DetailButton = styled.button`
-  background: #4CAF50; 
+  background: #c44536; 
   color: white;
   padding: 10px 15px;
   border: none;
@@ -659,6 +659,21 @@ const Button = styled.button`
   }
 `;
 
+ const Logo = styled.img`
+  height: 40px; // Set the height according to your preference
+  // Add some space to the right if necessary
+  // Add any other styles you need
+  margin-right: auto;
+`;
+
+
+// const WelcomeMessage = styled.h2`
+//   flex: 0.8;
+//   color: #333;
+//   text-align: left; 
+//   margin-right: auto; 
+// `;
+
 
 export {
   Container,
@@ -730,5 +745,6 @@ export {
   Button, 
   EditProfileBreadcrumbContainer,
   SuccessSignupHeader,
-  ItemsBreadcrumbContainer
+  ItemsBreadcrumbContainer,
+  Logo
 };

@@ -43,7 +43,17 @@ function AddItem() {
       errors.push('Available until date is required.');
     } else if (!/^\d{4}-\d{2}-\d{2}$/.test(newItem.available_until)) {
       errors.push('Available until date must be in the format YYYY-MM-DD.');
-    }    
+    } else {
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0); 
+    
+      const availableUntilDate = new Date(newItem.available_until);
+    
+      if (availableUntilDate < currentDate) {
+        errors.push('Available until date cannot be in the past.');
+      }
+    }
+      
 
     if (!newItem.available_until_time) {
       errors.push('Available until time is required.');
@@ -195,7 +205,7 @@ function AddItem() {
                       type="text"
                       id="available_until_time"
                       name="available_until_time"
-                      placeholder="HH:mm"
+                      placeholder="HH:mm (use military time)"
                       value={newItem.available_until_time}
                       onChange={handleChange}
                     />

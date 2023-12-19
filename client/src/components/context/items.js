@@ -45,7 +45,6 @@ function ItemsProvider({ children }) {
   };
 
   useEffect(() => {
-    fetchAllItems();
     fetchCategories();
   }, []);
 

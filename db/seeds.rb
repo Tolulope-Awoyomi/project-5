@@ -8,17 +8,23 @@
 
 # db/seeds.rb
 
-ItemCategory.create(category: 'Snacks & Sides')
-ItemCategory.create(category: 'Vegetarian & Vegan Dishes')
-ItemCategory.create(category: 'Sandwiches & Wraps')
-ItemCategory.create(category: 'Soups & Stews')
-ItemCategory.create(category: 'Seafood')
-ItemCategory.create(category: 'Prepared Meals')
-ItemCategory.create(category: 'Appetizers')
-ItemCategory.create(category: 'Bread & Pastries')
-ItemCategory.create(category: 'Dairy Products')
-ItemCategory.create(category: 'Dessert')
-ItemCategory.create(category: 'Drinks & Beverages')
-ItemCategory.create(category: 'Fruits')
-ItemCategory.create(category: 'Grains & Cereals')
-ItemCategory.create(category: 'Meats & Poultry')
+categories = [
+  'Snacks & Sides',
+  'Vegetarian & Vegan Dishes',
+  'Sandwiches & Wraps',
+  'Soups & Stews',
+  'Seafood',
+  'Prepared Meals',
+  'Appetizers',
+  'Bread & Pastries',
+  'Dairy Products',
+  'Dessert',
+  'Drinks & Beverages',
+  'Fruits',
+  'Grains & Cereals',
+  'Meats & Poultry'
+]
+
+categories.each do |category_name|
+  ItemCategory.find_or_create_by(category: category_name)
+end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         user = User.create(user_params)
 
         if user.valid?
-            UserMailer.with(user: user).welcome_email.deliver_now
+            UserMailer.with(user: user).welcome_email.deliver_later
             session[:user_id] = user.id
             render json: user, status: :created
         else

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
 import { useNavigate } from 'react-router-dom';
-import { CentreHeader, CategoriesMenu, CategoryButton, SearchContainer, SearchInput, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
+import { CentreHeader, CategoriesMenu, CategoryButton, SearchContainer, SearchInput, MapButton, ItemsList, ItemCard, ItemName, ItemDetail, DetailButton } from '../styles/StyledComponents';
 
 function ItemsMenu() {
   const { items, categories, fetchAllItems } = useContext(ItemsContext);
@@ -62,6 +62,10 @@ function ItemsMenu() {
       navigate(`/items/${itemId}`);
     };
 
+    const handleUseMapClick = () => {
+      navigate('/googlemap');
+    };
+
   return (
     <div>
       <CentreHeader> <h4>Browse Food Menu</h4> </CentreHeader>
@@ -80,6 +84,7 @@ function ItemsMenu() {
         <SearchInput type="text" placeholder="Search By Food Name" value={searchTerm} onChange={handleSearch} />
         <SearchInput type="text" placeholder="Enter a Location to Find Nearby Restaurants" value={searchLocation} onChange={handleSearchLocation} />
         <SearchInput type="text" placeholder="Search By Restaurant Name" value={searchBusinessName} onChange={handleSearchBusinessName} />
+        <MapButton onClick={handleUseMapClick} style={{ float: 'right' }}>Use Google Map</MapButton>
       </SearchContainer>
 
       <ItemsList>
@@ -93,7 +98,7 @@ function ItemsMenu() {
             <ItemDetail>Restaurant Address: {item.user.address}</ItemDetail>
             <ItemDetail>Available Until: {item.available_until} {item.available_until_time}</ItemDetail>
             <DetailButton onClick={() => handleMoreDetailsClick(item.id)}>
-              More Details
+              Add a Comment
             </DetailButton>
           </ItemCard>
         ))}

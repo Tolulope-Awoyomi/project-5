@@ -386,10 +386,20 @@ const EditButton = styled(StyledButton)`
 const DeleteButton = styled(StyledButton)`
   background-color:  #F44336;
   color: white;
-  // color: #F44336;;
+  // color: #F44336;
 
   &:hover {
     background-color: #d32f2f;
+  }
+`;
+
+const MapButton = styled(StyledButton)`
+  background-color:  #d32f2f;
+  color: white;
+  // color: #F44336;
+
+  &:hover {
+    background-color: #45a049;
   }
 `;
 
@@ -672,6 +682,28 @@ const NavLinksContainer = styled.div`
   margin-right: 80px; 
 `;
 
+const StyledMapContainer = styled.div`
+  position: relative;
+  width: 100%; 
+  height: 400px; 
+  margin-top: 20px;
+`;
+
+const AutocompleteContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  left: 10px;
+  z-index: 10; 
+
+  input {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+`;
 
 export {
   Container,
@@ -745,5 +777,8 @@ export {
   SuccessSignupHeader,
   ItemsBreadcrumbContainer,
   Logo,
-  NavLinksContainer
+  NavLinksContainer,
+  MapButton,
+  StyledMapContainer,
+  AutocompleteContainer
 };

@@ -12,6 +12,7 @@ import Inventory from "../pages/Inventory";
 import AddItem from "../pages/AddItem";
 import ManageAccount from "../pages/ManageAccount";
 import EditProfile from "../pages/EditProfile";
+import MapContainer from "../pages/MapContainer";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/additem" element={<AddItem />} />
           <Route path="/manage-account" element={<ManageAccount />} />
           <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/googlemap" element={<MapContainer />} />
         </Routes>
       </div>
     </>

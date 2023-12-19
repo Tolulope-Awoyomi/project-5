@@ -7,8 +7,8 @@ const Navbar = () => {
         <StyledNav>
             <Logo src={logo} alt="Your Business Logo" />
             <NavLinksContainer>
-              <StyledNavLink to="/items">Food Items</StyledNavLink>
-              <StyledNavLink to="/food-business">Food Business</StyledNavLink>
+              <StyledNavLink to="/items">Browse Food </StyledNavLink>
+              <StyledNavLink to="/food-business">For Restaurants</StyledNavLink>
             </NavLinksContainer>
         </StyledNav>
     );

@@ -37,10 +37,8 @@ function ItemDetail() {
         <ItemTitle>{item.name}</ItemTitle>
         <Detail>Quantity: {item.quantity}</Detail>
         <Detail>Allergens: {item.allergens}</Detail>
-        <Detail>Dietary Classification: {item.dietary_classification}</Detail>
-        <Detail>Nutrition Facts: {item.nutrition_facts}</Detail>
-        <Detail>Additional Info: {item.additional_info}</Detail>
-        <Detail>Available Until: {formatDateTime(item.available_until)}</Detail>
+        <Detail>Additional Info: {item.addtional_info}</Detail>
+        <Detail>Available Until: {item.available_until} {item.available_until_time}</Detail>
         {user && (
           <>
             <Subtitle>Posted by: {user.business_name}</Subtitle>

@@ -123,7 +123,7 @@ function Signup() {
                             <FormControl
                                 type="password"
                                 id="password"
-                                placeholder="Enter your password..."
+                                placeholder="Must be at least 5 characters long and contain at least one letter and one number"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -134,7 +134,7 @@ function Signup() {
                             <FormControl
                                 type="password"
                                 id="confirm_password"
-                                placeholder="Confirm your password..."
+                                placeholder="Must be at least 5 characters long and contain at least one letter and one number"
                                 value={passwordConfirmation}
                                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                             />

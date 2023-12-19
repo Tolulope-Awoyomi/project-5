@@ -16,7 +16,7 @@ function BeforeLogin() {
     <Container>
       <Card>
         <SuccessSignupHeader><h3>Your signup was successful!</h3></SuccessSignupHeader>
-        <FontAwesomeIcon icon={faSmile} />
+        <FontAwesomeIcon icon={faSmile} size="2x"/>
         <LinkContainer>
           <List>
             <ListItem>

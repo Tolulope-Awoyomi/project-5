@@ -14,10 +14,9 @@ function AddItem() {
     quantity: '',
     item_category_id: '',
     allergens: '',
-    dietary_classification: '',
-    nutrition_facts: '',
     addtional_info: '',
     available_until: '',
+    available_until_time: '',
     // expiration_date: '',
   });
   const [errors, setErrors] = useState([]);
@@ -41,10 +40,16 @@ function AddItem() {
     }
   
     if (!newItem.available_until) {
-      errors.push('Available until date and time is required.');
-    } else if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(newItem.available_until)) {
-      errors.push('Available until must be in the format YYYY-MM-DD HH:mm.');
-    }
+      errors.push('Available until date is required.');
+    } else if (!/^\d{4}-\d{2}-\d{2}$/.test(newItem.available_until)) {
+      errors.push('Available until date must be in the format YYYY-MM-DD.');
+    }    
+
+    if (!newItem.available_until_time) {
+      errors.push('Available until time is required.');
+    } else if (!/^\d{2}:\d{2}$/.test(newItem.available_until_time)) {
+      errors.push('Available until time must be in the format HH:mm.');
+    }    
   
     // if (!newItem.expiration_date) {
     //   errors.push('Expiration date is required.');
@@ -55,14 +60,6 @@ function AddItem() {
     // if (!newItem.allergens) {
     //   errors.push('Allergens information is required.');
     // }
-  
-    if (!newItem.dietary_classification) {
-      errors.push('Dietary classification is required.');
-    }
-  
-    if (!newItem.nutrition_facts) {
-      errors.push('Nutrition facts are required.');
-    }
 
     if (!newItem.item_category_id) {
       errors.push('Category is required.');
@@ -93,9 +90,8 @@ function AddItem() {
       quantity: newItem.quantity,
       item_category_id: newItem.item_category_id,
       allergens: newItem.allergens,
-      dietary_classification: newItem.dietary_classification,
-      nutrition_facts: newItem.nutrition_facts,
       available_until: newItem.available_until,
+      available_until_time: newItem.available_until_time,
       addtional_info: newItem.addtional_info,
       // expiration_date: newItem.expiration_date,
     };
@@ -111,19 +107,19 @@ function AddItem() {
           <BreadcrumbContainer>
             <BreadcrumbLink to="/food-business">Services</BreadcrumbLink>
             <BreadcrumbSeparator>/</BreadcrumbSeparator>
-            <BreadcrumbLink to="/additem">Add Item</BreadcrumbLink>
+            <BreadcrumbLink to="/additem">Add Food</BreadcrumbLink>
         </BreadcrumbContainer>
           <LogoutButton onClick={logoutUser}>Log Out</LogoutButton> 
         </Header>
 
           <Card>
-            <CentreHeader> <h4>Add Item</h4> </CentreHeader>
+            <CentreHeader> <h4>Add Food</h4> </CentreHeader>
           
             <FormContainer>
                 <form onSubmit={handleSubmit}>
           
                   <FormGroup>
-                    <FormLabel htmlFor="itemName">Item Name</FormLabel>
+                    <FormLabel htmlFor="itemName">Food Name</FormLabel>
                     <FormInput
                       type="text"
                       id="itemName"
@@ -172,28 +168,6 @@ function AddItem() {
                   </FormGroup>
 
                   <FormGroup>
-                    <FormLabel htmlFor="dietary_classification">Dietary Classification</FormLabel>
-                    <FormInput
-                      type="text"
-                      id="dietary_classification"
-                      name="dietary_classification"
-                      value={newItem.dietary_classification}
-                      onChange={handleChange}
-                    />
-                  </FormGroup>
-
-                  <FormGroup>
-                    <FormLabel htmlFor="nutrition_facts">Nutrition Facts</FormLabel>
-                    <FormInput
-                      type="text"
-                      id="nutrition_facts"
-                      name="nutrition_facts"
-                      value={newItem.nutrition_facts}
-                      onChange={handleChange}
-                    />
-                  </FormGroup>
-
-                  <FormGroup>
                     <FormLabel htmlFor="addtional_info">Additional Information</FormLabel>
                     <FormInput
                       type="text"
@@ -205,13 +179,24 @@ function AddItem() {
                   </FormGroup>
 
                   <FormGroup>
-                    <FormLabel htmlFor="available_until">Available Until (YYYY-MM-DD HH:mm)</FormLabel>
+                    <FormLabel htmlFor="available_until">Available Until (Date)</FormLabel>
                     <FormInput
-                      type="text"
+                      type="date"
                       id="available_until"
                       name="available_until"
-                      placeholder="YYYY-MM-DD HH:mm"
                       value={newItem.available_until}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormLabel htmlFor="available_until_time">Available Until (Time)</FormLabel>
+                    <FormInput
+                      type="text"
+                      id="available_until_time"
+                      name="available_until_time"
+                      placeholder="HH:mm"
+                      value={newItem.available_until_time}
                       onChange={handleChange}
                     />
                   </FormGroup>

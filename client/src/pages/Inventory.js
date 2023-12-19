@@ -62,7 +62,7 @@ function Inventory() {
 
       {isEditing ? (
         <Card>
-          <SectionHeader>Edit Item</SectionHeader>
+          <SectionHeader>Edit Food</SectionHeader>
           <StyledFormContainer>
             <StyledFormInput type="text" name="name" placeholder="Name" value={editItem.name} onChange={handleChange} />
             <StyledFormInput type="number" name="quantity" placeholder="Quantity" value={editItem.quantity} onChange={handleChange} />
@@ -72,14 +72,19 @@ function Inventory() {
               ))}
             </StyledFormSelect>
             <StyledFormInput type="text" name="allergens" placeholder="Allergens" value={editItem.allergens} onChange={handleChange} />
-            <StyledFormInput type="text" name="dietary_classification" placeholder="Dietary Classification" value={editItem.dietary_classification} onChange={handleChange} />
-            <StyledFormInput type="text" name="nutrition_facts" placeholder="Nutrition Facts" value={editItem.nutrition_facts} onChange={handleChange} />
-            <StyledFormInput type="text" name="additional_info" placeholder="Additional Information" value={editItem.additional_info} onChange={handleChange} />
+            <StyledFormInput type="text" name="addtional_info" placeholder="Additional Information" value={editItem.addtional_info} onChange={handleChange} />
+            <StyledFormInput
+              type="date"
+              name="available_until"
+              placeholder="YYYY-MM-DD"
+              value={editItem.available_until || ''}
+              onChange={handleChange} 
+            />
             <StyledFormInput
               type="text"
-              name="available_until"
-              placeholder="YYYY-MM-DD HH:mm"
-              value={editItem.available_until || ''}
+              name="available_until_time"
+              placeholder="HH:mm"
+              value={editItem.available_until_time || ''}
               onChange={handleChange} 
             />
           </StyledFormContainer>
@@ -91,7 +96,7 @@ function Inventory() {
         </Card>
       ) : (
         <>
-        <SectionHeader>Item Inventory</SectionHeader>
+        <SectionHeader>Food Inventory</SectionHeader>
         <StyledTable>
           <thead>
             <tr>
@@ -99,8 +104,6 @@ function Inventory() {
               <th>Quantity</th>
               <th>Category</th>
               <th>Allergens</th>
-              <th>Dietary Classification</th>
-              <th>Nutrition Facts</th>
               <th>Additional Info</th>
               <th>Available Until</th>
               <th>Actions</th>
@@ -113,12 +116,8 @@ function Inventory() {
                 <td style={{ textAlign: "center" }}>{item.quantity}</td>
                 <td style={{ textAlign: "center" }}>{getCategoryName(item.item_category_id)}</td>
                 <td style={{ textAlign: "center" }}>{item.allergens}</td>
-                <td style={{ textAlign: "center" }}>{item.dietary_classification}</td>
-                <td style={{ textAlign: "center" }}>{item.nutrition_facts}</td>
                 <td style={{ textAlign: "center" }}>{item.addtional_info}</td>
-                <td style={{ textAlign: "center" }}>
-                  {item.available_until || ''}
-                </td>
+                <td style={{ textAlign: "center" }}>{item.available_until} {item.available_until_time}</td>
                 <td>
                   <EditButton onClick={() => handleEdit(item)}>Edit</EditButton>
                   <DeleteButton onClick={() => handleDelete(item.id)}>Delete</DeleteButton>

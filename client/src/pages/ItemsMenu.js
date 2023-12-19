@@ -57,21 +57,6 @@ function ItemsMenu() {
       fetchAllItems();
       handleCategoryClick('All');
     }, []); 
-
-    const formatDateTime = (dateTimeString) => {
-      const date = new Date(dateTimeString);
-      const options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-        timeZoneName: 'short' 
-      };
-      
-      return date.toLocaleString('en-US', options).replace(/:00(?=\s[a|p]m)/i, '');
-    };
     
     const handleMoreDetailsClick = (itemId) => {
       navigate(`/items/${itemId}`);
@@ -79,7 +64,7 @@ function ItemsMenu() {
 
   return (
     <div>
-      <CentreHeader> <h4>Browse Item Menu</h4> </CentreHeader>
+      <CentreHeader> <h4>Browse Food Menu</h4> </CentreHeader>
      <CategoriesMenu>
         <CategoryButton onClick={() => handleCategoryClick('All')}>
           All
@@ -92,9 +77,9 @@ function ItemsMenu() {
       </CategoriesMenu>
 
       <SearchContainer>
-        <SearchInput type="text" placeholder="Search Item Name" value={searchTerm} onChange={handleSearch} />
-        <SearchInput type="text" placeholder="Search By Location" value={searchLocation} onChange={handleSearchLocation} />
-        <SearchInput type="text" placeholder="Search Business Name" value={searchBusinessName} onChange={handleSearchBusinessName} />
+        <SearchInput type="text" placeholder="Search By Food Name" value={searchTerm} onChange={handleSearch} />
+        <SearchInput type="text" placeholder="Enter a Location to Find Nearby Restaurants" value={searchLocation} onChange={handleSearchLocation} />
+        <SearchInput type="text" placeholder="Search By Restaurant Name" value={searchBusinessName} onChange={handleSearchBusinessName} />
       </SearchContainer>
 
       <ItemsList>
@@ -103,11 +88,10 @@ function ItemsMenu() {
             <ItemName>{item.name}</ItemName>
             <ItemDetail>Quantity: {item.quantity}</ItemDetail>
             <ItemDetail>Allergens: {item.allergens}</ItemDetail>
-            <ItemDetail>Dietary Classification: {item.dietary_classification}</ItemDetail>
-            <ItemDetail>Nutrition Facts: {item.nutrition_facts}</ItemDetail>
-            <ItemDetail>Additional Info: {item.additional_info}</ItemDetail>
+            <ItemDetail>Additional Info: {item.addtional_info}</ItemDetail>
             <ItemDetail>Restaurant: {item.user.business_name}</ItemDetail>
-            <ItemDetail>Available Until: {formatDateTime(item.available_until)}</ItemDetail>
+            <ItemDetail>Restaurant Address: {item.user.address}</ItemDetail>
+            <ItemDetail>Available Until: {item.available_until} {item.available_until_time}</ItemDetail>
             <DetailButton onClick={() => handleMoreDetailsClick(item.id)}>
               More Details
             </DetailButton>

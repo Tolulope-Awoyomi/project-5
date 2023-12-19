@@ -56,6 +56,6 @@ class ItemsController < ApplicationController
     end
 
     def items_params
-        params.permit(:name, :quantity, :addtional_info, :available_until, :item_category_id, :expiration_date, :allergens, :dietary_classification, :nutrition_facts)
+        params.permit(:name, :quantity, :addtional_info, :available_until, :available_until_time, :item_category_id, :expiration_date, :allergens )
     end
 end

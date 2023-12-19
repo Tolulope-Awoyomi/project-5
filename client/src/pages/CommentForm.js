@@ -1,4 +1,3 @@
-// CommentForm.js
 import React, { useState, useContext } from 'react';
 import { ItemsContext } from '../components/context/items';
 import { CommentFormWrapper, StyledForm, StyledInput, StyledTextArea, SubmitButton } from "../styles/StyledComponents";

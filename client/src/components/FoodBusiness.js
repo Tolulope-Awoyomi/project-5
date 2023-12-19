@@ -18,7 +18,7 @@ const FoodBusiness = () => {
             <Card>
                 <WelcomeText>Fetch some food today</WelcomeText>
                 <DescriptionText>
-                    Join our community of Food Businesses to donate excess food. Do not throw unsold food away, fetch it out!
+                    Join our community of Restaurants to donate excess food. Do not throw unsold food away, fetch it out!
                 </DescriptionText>
             </Card>
             <LinksContainer>

@@ -70,15 +70,15 @@ function Welcome() {
       <FlexContainer>
         <IconBoxItem>
           <FontAwesomeIcon icon={faPlus} size="2x" />
-          <Title>Add Item</Title>
-          <Description> Add Food Items to be fetched by those in need.</Description>
+          <Title>Add Food</Title>
+          <Description>Easily add food items to your inventory for others to fetch.</Description>
           <SubmitButton onClick={navigateToAddItemPage}>Add</SubmitButton>
         </IconBoxItem>
 
         <IconBoxItem>
           <FontAwesomeIcon icon={faDolly} size="2x" />
           <Title>Inventory</Title>
-          <Description>Efficiently track your inventory.</Description>
+          <Description>Keep track of your food stock and manage inventory efficiently.</Description>
           <SubmitButton onClick={navigateToInventoryPage}>View</SubmitButton>
         </IconBoxItem>
       </FlexContainer>

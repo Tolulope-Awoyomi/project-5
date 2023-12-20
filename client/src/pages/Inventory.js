@@ -155,7 +155,7 @@ function Inventory() {
             <StyledFormInput 
               type="text" 
               name="addtional_info" 
-              placeholder="Additional_info" 
+              placeholder="Additional Info" 
               value={editItem.addtional_info} 
               onChange={handleChange} 
             />
@@ -205,7 +205,7 @@ function Inventory() {
                   <td style={{ textAlign: "center" }}>{item.quantity}</td>
                   <td style={{ textAlign: "center" }}>{getCategoryName(item.item_category_id)}</td>
                   <td style={{ textAlign: "center" }}>{item.allergens}</td>
-                  <td style={{ textAlign: "center" }}>{item.additional_info}</td>
+                  <td style={{ textAlign: "center" }}>{item.addtional_info}</td>
                   <td style={{ textAlign: "center" }}>{item.available_until} {item.available_until_time}</td>
                   <td>
                     <EditButton onClick={() => handleEdit(item)}>Edit</EditButton>

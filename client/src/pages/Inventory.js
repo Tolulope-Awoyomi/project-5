@@ -22,7 +22,7 @@ import {
 
 function Inventory() {
   const { items, categories, fetchUserItems, updateItem, deleteItem } = useContext(ItemsContext);
-  const { user, logout } = useContext(UserContext); 
+  const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [editItem, setEditItem] = useState(null);
@@ -33,7 +33,7 @@ function Inventory() {
   }, []);
 
   const logoutUser = () => {
-    logout(); 
+    logout();
     navigate('/login');
   };
 
@@ -49,16 +49,29 @@ function Inventory() {
   const validateItem = (item) => {
     let errors = {};
     if (!item.name) errors.name = 'Name is required';
-    if (item.quantity <= 0) errors.quantity = 'Quantity must be positive';
-    if (!item.allergens) errors.allergens = 'Allergens info is required';
-    if (!item.addtional_info) errors.addtional_info = 'Additional information is required';
+    if (item.quantity <= 0) errors.quantity = 'Quantity must be at least 1';
     if (!item.available_until) errors.available_until = 'Available until date is required';
-    if (!item.available_until_time) errors.available_until_time = 'Available until time is required';
+    if (!item.available_until_time) {
+      errors.available_until_time = 'Available until time is required';
+    } else {
+      const timePattern = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/; 
+      if (!timePattern.test(item.available_until_time)) {
+        errors.available_until_time = 'Time must be in HH:mm format';
+      }
+    }
     if (item.item_category_id === null || item.item_category_id === undefined) errors.item_category_id = 'Category must be selected';
-    // Add more validations as needed
-
     return errors;
   };
+
+  const getTodayDateInLocalTimezone = () => {
+    const now = new Date();
+    const timezoneOffsetInMs = now.getTimezoneOffset() * 60000; 
+    const localTime = new Date(now - timezoneOffsetInMs);
+    return localTime.toISOString().split('T')[0];
+  };
+  
+  const today = getTodayDateInLocalTimezone();
+  
 
   const handleUpdate = () => {
     const errors = validateItem(editItem);
@@ -110,6 +123,7 @@ function Inventory() {
               onChange={handleChange} 
             />
             {validationErrors.name && <div className="error-message">{validationErrors.name}</div>}
+
             <StyledFormInput 
               type="number" 
               name="quantity" 
@@ -118,6 +132,7 @@ function Inventory() {
               onChange={handleChange} 
             />
             {validationErrors.quantity && <div className="error-message">{validationErrors.quantity}</div>}
+
             <StyledFormSelect 
               name="item_category_id" 
               value={editItem.item_category_id} 
@@ -127,6 +142,8 @@ function Inventory() {
                 <option key={category.id} value={category.id}>{category.category}</option>
               ))}
             </StyledFormSelect>
+            {validationErrors.item_category_id && <div className="error-message">{validationErrors.item_category_id}</div>}
+
             <StyledFormInput 
               type="text" 
               name="allergens" 
@@ -134,20 +151,25 @@ function Inventory() {
               value={editItem.allergens} 
               onChange={handleChange} 
             />
+
             <StyledFormInput 
               type="text" 
               name="addtional_info" 
-              placeholder="Additional Information" 
+              placeholder="Additional_info" 
               value={editItem.addtional_info} 
               onChange={handleChange} 
             />
+
             <StyledFormInput
               type="date"
               name="available_until"
               placeholder="YYYY-MM-DD"
               value={editItem.available_until || ''}
+              min={today} 
               onChange={handleChange}
             />
+            {validationErrors.available_until && <div className="error-message">{validationErrors.available_until}</div>}
+
             <StyledFormInput
               type="text"
               name="available_until_time"
@@ -155,7 +177,8 @@ function Inventory() {
               value={editItem.available_until_time || ''}
               onChange={handleChange}
             />
-            </StyledFormContainer>
+            {validationErrors.available_until_time && <div className="error-message">{validationErrors.available_until_time}</div>}
+        </StyledFormContainer>
             <br />
             <EditButton onClick={handleUpdate}>Save Changes</EditButton>
             <DeleteButton onClick={() => setIsEditing(false)}>Cancel</DeleteButton>
@@ -182,7 +205,7 @@ function Inventory() {
                   <td style={{ textAlign: "center" }}>{item.quantity}</td>
                   <td style={{ textAlign: "center" }}>{getCategoryName(item.item_category_id)}</td>
                   <td style={{ textAlign: "center" }}>{item.allergens}</td>
-                  <td style={{ textAlign: "center" }}>{item.addtional_info}</td>
+                  <td style={{ textAlign: "center" }}>{item.additional_info}</td>
                   <td style={{ textAlign: "center" }}>{item.available_until} {item.available_until_time}</td>
                   <td>
                     <EditButton onClick={() => handleEdit(item)}>Edit</EditButton>

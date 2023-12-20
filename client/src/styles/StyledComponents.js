@@ -128,6 +128,14 @@ const ErrorAlert = styled.div`
   margin-bottom: 16px;
 `;
 
+const CommentErrorAlert = styled.div`
+  color: #721c24;
+  border-color: #f5c6cb;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+`;
+
 const StyledNav = styled.nav`
   background-color: #fffaf0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -780,5 +788,6 @@ export {
   NavLinksContainer,
   MapButton,
   StyledMapContainer,
-  AutocompleteContainer
+  AutocompleteContainer,
+  CommentErrorAlert
 };

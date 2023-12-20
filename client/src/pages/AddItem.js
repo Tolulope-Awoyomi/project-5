@@ -44,15 +44,21 @@ function AddItem() {
     } else if (!/^\d{4}-\d{2}-\d{2}$/.test(newItem.available_until)) {
       errors.push('Available until date must be in the format YYYY-MM-DD.');
     } else {
-      const currentDate = new Date();
-      currentDate.setHours(0, 0, 0, 0); 
-    
+      const getTodayDateInLocalTimezone = () => {
+        const now = new Date();
+        const timezoneOffsetInMs = now.getTimezoneOffset() * 60000; 
+        const localTime = new Date(now - timezoneOffsetInMs);
+        return localTime.toISOString().split('T')[0];
+      };
+      
+      const today = getTodayDateInLocalTimezone();
+      const currentDate = new Date(today);
       const availableUntilDate = new Date(newItem.available_until);
     
       if (availableUntilDate < currentDate) {
         errors.push('Available until date cannot be in the past.');
       }
-    }
+    }    
       
 
     if (!newItem.available_until_time) {

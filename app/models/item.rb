@@ -12,8 +12,5 @@ class Item < ApplicationRecord
       errors.add(:quantity, 'must be at least 1') if quantity && quantity < 1
     end
   
-    def available_until_time_format
-      errors.add(:available_until_time, 'is required and must be in HH:MM format') unless available_until_time =~ /\A\d{2}:\d{2}\z/
-    end
   end
   
